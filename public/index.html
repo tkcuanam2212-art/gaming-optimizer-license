@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gaming Optimizer - Lay key</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);
+       color:#e2e8f0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .card{background:#1e293b;border-radius:16px;padding:48px;max-width:520px;width:100%;
+        box-shadow:0 20px 60px rgba(0,0,0,.5);text-align:center;border:1px solid #334155}
+  h1{font-size:32px;color:#38bdf8;margin-bottom:8px}
+  .sub{color:#94a3b8;margin-bottom:32px;font-size:15px}
+  .btn{display:block;width:100%;padding:18px;border:none;border-radius:10px;
+       font-size:16px;font-weight:700;cursor:pointer;margin-bottom:14px;
+       transition:.15s;text-decoration:none;color:white}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(56,189,248,.3)}
+  .btn-free{background:linear-gradient(135deg,#10b981,#059669)}
+  .btn-vip{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}
+  .info{color:#64748b;font-size:13px;margin-top:24px;line-height:1.7}
+  input{width:100%;padding:14px;background:#0f172a;border:1px solid #334155;border-radius:8px;
+        color:#e2e8f0;font-family:monospace;font-size:14px;text-align:center;margin-bottom:16px}
+  .status{padding:14px;border-radius:8px;margin-top:16px;font-size:14px;display:none}
+  .status.show{display:block}
+  .status.ok{background:#064e3b;color:#6ee7b7}
+  .status.err{background:#7f1d1d;color:#fca5a5}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Gaming Optimizer</h1>
+  <p class="sub">Nhap HWID de lay key</p>
+
+  <label style="display:block;text-align:left;color:#94a3b8;font-size:13px;margin-bottom:6px">
+    HWID (copy tu app):
+  </label>
+  <input id="hwid" placeholder="VD: A3F8K2B9..." autocomplete="off">
+
+  <button class="btn btn-free" onclick="getFreeKey()">Lay key MIEN PHI (het han 0h)</button>
+  <a class="btn btn-vip" href="mailto:you@email.com?subject=Mua key VIP Gaming Optimizer">Mua key VIP (vinh vien)</a>
+
+  <div id="status" class="status"></div>
+
+  <p class="info">
+    Key free het han luc <strong>0h00 moi ngay</strong> (gio VN)<br>
+    Key VIP dung vinh vien
+  </p>
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  let hwid = params.get('hwid') || localStorage.getItem('hwid') || '';
+  if (hwid) {
+    localStorage.setItem('hwid', hwid);
+    document.getElementById('hwid').value = hwid;
+  }
+  async function getFreeKey() {
+    const st = document.getElementById('status');
+    const hwidInput = document.getElementById('hwid').value.trim();
+    if (!hwidInput || hwidInput.length < 8) {
+      st.className = 'status err show';
+      st.textContent = 'HWID khong hop le';
+      return;
+    }
+    localStorage.setItem('hwid', hwidInput);
+    st.className = 'status show';
+    st.textContent = 'Dang tao link...';
+    try {
+      const r = await fetch('/api/request-token', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ hwid: hwidInput })
+      });
+      const data = await r.json();
+      if (data.url) {
+        st.className = 'status ok show';
+        st.textContent = 'Dang chuyen den trang lay key...';
+        setTimeout(() => location.href = data.url, 700);
+      } else throw new Error(data.error || 'Loi');
+    } catch (e) {
+      st.className = 'status err show';
+      st.textContent = e.message;
+    }
+  }
+</script>
+</body>
+</html>
