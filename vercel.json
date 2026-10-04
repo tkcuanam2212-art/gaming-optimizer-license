@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin.html" }
+  ],
+  "functions": {
+    "api/**/*.js": { "memory": 512, "maxDuration": 10 }
+  }
+}
