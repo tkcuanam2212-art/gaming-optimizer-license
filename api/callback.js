@@ -2,7 +2,7 @@ import { sql } from './_lib/db.js';
 import { generateKey, getVNMidnightTomorrow } from './_lib/utils.js';
 
 export default async function handler(req, res) {
-  const { token } = req.query;
+  const token = req.query.token || req.query.sub_id;
   if (!token) return htmlErr(res, 'Thieu token');
 
   const rows = await sql`SELECT * FROM tokens WHERE token = ${token} LIMIT 1`;
