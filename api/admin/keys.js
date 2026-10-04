@@ -29,15 +29,42 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'PATCH') {
-    const { id, action } = req.body || {};
+    const { id, action, type } = req.body || {};
+
     if (action === 'revoke') {
       await sql`UPDATE keys SET status = 'revoked' WHERE id = ${id}`;
       return res.json({ success: true });
     }
+
     if (action === 'reset_hwid') {
       await sql`UPDATE keys SET hwid = NULL, status = 'unused' WHERE id = ${id}`;
       return res.json({ success: true });
     }
+
+    if (action === 'delete') {
+      await sql`DELETE FROM keys WHERE id = ${id}`;
+      return res.json({ success: true });
+    }
+
+    if (action === 'delete_all') {
+      if (type === 'vip' || type === 'free') {
+        await sql`DELETE FROM keys WHERE key_type = ${type}`;
+      } else {
+        await sql`DELETE FROM keys`;
+      }
+      return res.json({ success: true });
+    }
+
+    if (action === 'delete_revoked') {
+      await sql`DELETE FROM keys WHERE status = 'revoked'`;
+      return res.json({ success: true });
+    }
+
+    if (action === 'delete_expired') {
+      await sql`DELETE FROM keys WHERE expires_at IS NOT NULL AND expires_at < NOW()`;
+      return res.json({ success: true });
+    }
   }
+
   return res.status(405).end();
 }
