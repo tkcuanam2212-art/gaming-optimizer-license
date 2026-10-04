@@ -59,10 +59,10 @@
     <input id="newDays" type="number" placeholder="Han (ngay, trong=vinh vien)" style="width:220px">
     <button onclick="createVIP()">Tao key VIP</button>
     <button onclick="loadKeys();loadStats()" style="background:#64748b;color:white">Refresh</button>
-<button onclick="deleteAll()" style="background:#7f1d1d;color:white">Xoa tat ca</button>
-<button onclick="deleteRevoked()" style="background:#7f1d1d;color:white">Xoa revoked</button>
-<button onclick="deleteExpired()" style="background:#7f1d1d;color:white">Xoa het han</button>
-<button onclick="logout()" style="background:#dc2626;color:white">Dang xuat</button>
+    <button onclick="deleteAll()" style="background:#7f1d1d;color:white">Xoa tat ca</button>
+    <button onclick="deleteRevoked()" style="background:#7f1d1d;color:white">Xoa revoked</button>
+    <button onclick="deleteExpired()" style="background:#7f1d1d;color:white">Xoa het han</button>
+    <button onclick="logout()" style="background:#dc2626;color:white">Dang xuat</button>
   </div>
 
   <div class="row">
@@ -164,6 +164,7 @@
         <td>
           <button onclick="revoke(${k.id})" style="background:#dc2626;padding:6px 10px;font-size:12px">Revoke</button>
           <button onclick="resetHwid(${k.id})" style="background:#f59e0b;padding:6px 10px;font-size:12px">Reset</button>
+          <button onclick="deleteKey(${k.id})" style="background:#7f1d1d;padding:6px 10px;font-size:12px">Delete</button>
         </td>`;
       tb.appendChild(tr);
     }
@@ -196,6 +197,45 @@
       body: JSON.stringify({ id, action: 'reset_hwid' })
     });
     loadKeys();
+  }
+
+  async function deleteKey(id) {
+    if (!confirm('XOA VINH VIEN key nay?\n\nKHONG THE HOAN TAC!')) return;
+    await api('/api/admin/keys', {
+      method: 'PATCH',
+      body: JSON.stringify({ id, action: 'delete' })
+    });
+    loadKeys(); loadStats();
+  }
+
+  async function deleteAll() {
+    const type = document.getElementById('filterType').value;
+    const label = type ? 'loai ' + type.toUpperCase() : 'TAT CA';
+    if (!confirm('XOA VINH VIEN ' + label + ' key?\n\nKHONG THE HOAN TAC!')) return;
+    if (!confirm('Ban CHAC CHAN chua?\n\nDay la lan xac nhan cuoi!')) return;
+    await api('/api/admin/keys', {
+      method: 'PATCH',
+      body: JSON.stringify({ action: 'delete_all', type })
+    });
+    loadKeys(); loadStats();
+  }
+
+  async function deleteRevoked() {
+    if (!confirm('Xoa tat ca key da bi REVOKE?')) return;
+    await api('/api/admin/keys', {
+      method: 'PATCH',
+      body: JSON.stringify({ action: 'delete_revoked' })
+    });
+    loadKeys(); loadStats();
+  }
+
+  async function deleteExpired() {
+    if (!confirm('Xoa tat ca key da HET HAN?')) return;
+    await api('/api/admin/keys', {
+      method: 'PATCH',
+      body: JSON.stringify({ action: 'delete_expired' })
+    });
+    loadKeys(); loadStats();
   }
 </script>
 </body>
