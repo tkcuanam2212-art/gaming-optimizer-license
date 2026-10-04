@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Gaming Optimizer</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui;background:#0f172a;color:#e2e8f0;padding:20px}
+  .container{max-width:1200px;margin:auto}
+  h1{color:#38bdf8;margin-bottom:20px}
+  .row{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+  .stat{background:#1e293b;padding:16px 20px;border-radius:8px;flex:1;min-width:140px}
+  .stat .n{font-size:24px;font-weight:700;color:#38bdf8}
+  .stat .l{font-size:12px;color:#94a3b8;margin-top:4px}
+  input,select,button{padding:10px 14px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:14px}
+  button{background:#38bdf8;color:#0f172a;border:none;cursor:pointer;font-weight:600}
+  button:hover{background:#0ea5e9}
+  table{width:100%;border-collapse:collapse;background:#1e293b;border-radius:8px;overflow:hidden}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #334155;font-size:13px}
+  th{background:#0f172a;color:#94a3b8;font-weight:600;font-size:11px;text-transform:uppercase}
+  tr:hover{background:#334155}
+  .key{font-family:monospace;color:#38bdf8;user-select:all}
+  .badge{padding:3px 8px;border-radius:12px;font-size:11px;font-weight:600}
+  .badge.vip{background:#7c3aed;color:#e9d5ff}
+  .badge.free{background:#059669;color:#a7f3d0}
+  .badge.active{background:#0891b2;color:#cffafe}
+  .badge.unused{background:#64748b;color:white}
+  .badge.revoked{background:#7f1d1d;color:#fca5a5}
+  #login{max-width:400px;margin:100px auto;background:#1e293b;padding:40px;border-radius:12px}
+  #login input{width:100%;margin-bottom:12px}
+  #login button{width:100%}
+  #app{display:none}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <h1 style="text-align:center">Admin</h1>
+  <input id="u" placeholder="Username">
+  <input id="p" type="password" placeholder="Password">
+  <button onclick="login()">Dang nhap</button>
+  <div id="loginErr" style="color:#f87171;text-align:center;margin-top:12px;font-size:13px"></div>
+</div>
+
+<div id="app" class="container">
+  <h1>Admin Panel</h1>
+
+  <div class="row">
+    <div class="stat"><div class="n" id="s-total">-</div><div class="l">Tong keys</div></div>
+    <div class="stat"><div class="n" id="s-vip">-</div><div class="l">Key VIP</div></div>
+    <div class="stat"><div class="n" id="s-free">-</div><div class="l">Key Free</div></div>
+    <div class="stat"><div class="n" id="s-active">-</div><div class="l">Dang active</div></div>
+    <div class="stat"><div class="n" id="s-claims">-</div><div class="l">Claim 24h</div></div>
+    <div class="stat"><div class="n" id="s-today">-</div><div class="l">Free hom nay</div></div>
+  </div>
+
+  <div class="row">
+    <input id="newCount" type="number" value="10" min="1" max="100" placeholder="So luong" style="width:120px">
+    <input id="newDays" type="number" placeholder="Han (ngay, trong=vinh vien)" style="width:220px">
+    <button onclick="createVIP()">Tao key VIP</button>
+    <button onclick="loadKeys();loadStats()" style="background:#64748b;color:white">Refresh</button>
+    <button onclick="logout()" style="background:#dc2626;color:white">Dang xuat</button>
+  </div>
+
+  <div class="row">
+    <select id="filterType" onchange="loadKeys()">
+      <option value="">Tat ca loai</option>
+      <option value="vip">VIP</option>
+      <option value="free">Free</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Key</th><th>Loai</th><th>HWID</th><th>Status</th>
+        <th>Het han</th><th>Tao luc</th><th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<script>
+  let token = localStorage.getItem('admin_token');
+  if (token) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadStats(); loadKeys();
+  }
+
+  async function login() {
+    const r = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        username: document.getElementById('u').value,
+        password: document.getElementById('p').value
+      })
+    });
+    if (!r.ok) {
+      document.getElementById('loginErr').textContent = 'Sai tai khoan hoac mat khau';
+      return;
+    }
+    const d = await r.json();
+    token = d.token;
+    localStorage.setItem('admin_token', token);
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadStats(); loadKeys();
+  }
+
+  function logout() {
+    localStorage.removeItem('admin_token');
+    location.reload();
+  }
+
+  async function api(path, opts = {}) {
+    const r = await fetch(path, {
+      ...opts,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+        ...(opts.headers || {})
+      }
+    });
+    if (r.status === 401) { logout(); throw new Error('Unauthorized'); }
+    return r.json();
+  }
+
+  async function loadStats() {
+    const d = await api('/api/admin/stats');
+    document.getElementById('s-total').textContent  = d.total_keys;
+    document.getElementById('s-vip').textContent    = d.vip_keys;
+    document.getElementById('s-free').textContent   = d.free_keys;
+    document.getElementById('s-active').textContent = d.active_keys;
+    document.getElementById('s-claims').textContent = d.daily_claims;
+    document.getElementById('s-today').textContent  = d.free_today;
+  }
+
+  async function loadKeys() {
+    const type = document.getElementById('filterType').value;
+    const d = await api('/api/admin/keys' + (type ? '?type=' + type : ''));
+    const tb = document.getElementById('tbody');
+    tb.innerHTML = '';
+    for (const k of d.keys) {
+      const hwid = k.hwid ? k.hwid.slice(0, 12) + '...' : '-';
+      const exp = k.expires_at
+        ? new Date(k.expires_at).toLocaleString('vi-VN', {timeZone:'Asia/Ho_Chi_Minh'})
+        : 'Vinh vien';
+      const created = new Date(k.created_at).toLocaleString('vi-VN', {timeZone:'Asia/Ho_Chi_Minh'});
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${k.id}</td>
+        <td class="key">${k.key_code}</td>
+        <td><span class="badge ${k.key_type}">${k.key_type.toUpperCase()}</span></td>
+        <td title="${k.hwid || ''}" style="font-family:monospace;font-size:11px;color:#94a3b8">${hwid}</td>
+        <td><span class="badge ${k.status}">${k.status}</span></td>
+        <td style="font-size:12px">${exp}</td>
+        <td style="font-size:12px;color:#94a3b8">${created}</td>
+        <td>
+          <button onclick="revoke(${k.id})" style="background:#dc2626;padding:6px 10px;font-size:12px">Revoke</button>
+          <button onclick="resetHwid(${k.id})" style="background:#f59e0b;padding:6px 10px;font-size:12px">Reset</button>
+        </td>`;
+      tb.appendChild(tr);
+    }
+  }
+
+  async function createVIP() {
+    const count = parseInt(document.getElementById('newCount').value);
+    const days = document.getElementById('newDays').value;
+    const d = await api('/api/admin/keys', {
+      method: 'POST',
+      body: JSON.stringify({ count, days: days ? parseInt(days) : null })
+    });
+    alert('Da tao ' + d.created.length + ' key VIP');
+    loadStats(); loadKeys();
+  }
+
+  async function revoke(id) {
+    if (!confirm('Revoke key nay?')) return;
+    await api('/api/admin/keys', {
+      method: 'PATCH',
+      body: JSON.stringify({ id, action: 'revoke' })
+    });
+    loadKeys();
+  }
+
+  async function resetHwid(id) {
+    if (!confirm('Reset HWID?')) return;
+    await api('/api/admin/keys', {
+      method: 'PATCH',
+      body: JSON.stringify({ id, action: 'reset_hwid' })
+    });
+    loadKeys();
+  }
+</script>
+</body>
+</html>
