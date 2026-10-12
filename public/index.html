@@ -6,9 +6,6 @@
 <meta name="description" content="Gaming Optimizer v5.0 — Tối ưu gaming chuyên nghiệp. Tăng FPS, giảm ping, an toàn 100%.">
 <title>Gaming Optimizer v5.0 — Tối Ưu Gaming Chuyên Nghiệp</title>
 <style>
-/* ============================================================
-   RESET + BASE
-   ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -64,9 +61,6 @@ code {
     color: var(--green);
 }
 
-/* ============================================================
-   BACKGROUND EFFECTS
-   ============================================================ */
 .bg-fx {
     position: fixed;
     inset: 0;
@@ -112,9 +106,6 @@ code {
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
 }
 
-/* ============================================================
-   LAYOUT
-   ============================================================ */
 .wrapper {
     position: relative;
     z-index: 1;
@@ -123,9 +114,6 @@ code {
     padding: 0 24px;
 }
 
-/* ============================================================
-   HEADER
-   ============================================================ */
 header {
     position: sticky;
     top: 0;
@@ -210,9 +198,6 @@ header {
     box-shadow: 0 12px 26px -8px var(--red-glow);
 }
 
-/* ============================================================
-   TABS
-   ============================================================ */
 .tabs-container {
     display: flex;
     justify-content: center;
@@ -257,9 +242,6 @@ header {
     box-shadow: 0 8px 22px -8px var(--blue-glow);
 }
 
-/* ============================================================
-   TAB PANELS
-   ============================================================ */
 .tab-panel { display: none; animation: fadeIn .5s ease; }
 .tab-panel.active { display: block; }
 @keyframes fadeIn {
@@ -267,9 +249,6 @@ header {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ============================================================
-   HERO
-   ============================================================ */
 .hero {
     padding: 64px 0 84px;
     text-align: center;
@@ -371,9 +350,6 @@ header {
     transform: translateY(-2px);
 }
 
-/* ============================================================
-   TRUST BAR
-   ============================================================ */
 .trust-bar {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -416,9 +392,6 @@ header {
     margin-top: 2px;
 }
 
-/* ============================================================
-   SECTION
-   ============================================================ */
 .section { padding: 64px 0; }
 .section-head {
     text-align: center;
@@ -447,9 +420,6 @@ header {
     font-size: 16px;
 }
 
-/* ============================================================
-   VERSION CARDS
-   ============================================================ */
 .versions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -623,7 +593,6 @@ header {
     letter-spacing: .3px;
 }
 
-/* SHA box */
 .sha-box {
     margin-top: 18px;
     padding: 12px 14px;
@@ -665,9 +634,6 @@ header {
 }
 .sha-box:hover .copy-hint { opacity: 1; }
 
-/* ============================================================
-   SAFETY SECTIONS
-   ============================================================ */
 .safety-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -753,9 +719,6 @@ header {
 }
 .safety-card.yellow ul li::before { color: var(--yellow); }
 
-/* ============================================================
-   FEATURE GRID
-   ============================================================ */
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -798,9 +761,6 @@ header {
     line-height: 1.65;
 }
 
-/* ============================================================
-   CONTACT TAB
-   ============================================================ */
 .contact-hero {
     text-align: center;
     padding: 64px 0 40px;
@@ -841,7 +801,6 @@ header {
 }
 .vip-badge svg { width: 14px; height: 14px; }
 
-/* PRICING */
 .pricing-box {
     max-width: 640px;
     margin: 44px auto;
@@ -903,7 +862,6 @@ header {
     flex-shrink: 0;
 }
 
-/* CONTACT CARDS */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -999,7 +957,6 @@ header {
 .contact-card:hover .c-cta { gap: 11px; }
 .contact-card .c-cta svg { width: 14px; height: 14px; }
 
-/* FAQ */
 .faq-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1032,9 +989,6 @@ header {
 }
 .faq-box strong { color: var(--text); }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
 footer {
     border-top: 1px solid var(--border);
     padding: 36px 0;
@@ -1047,9 +1001,6 @@ footer p {
 }
 footer strong { color: var(--text-dim); }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 760px) {
     .header-actions .btn-small:not(.primary) { display: none; }
     .versions-grid { grid-template-columns: 1fr; }
@@ -1063,9 +1014,6 @@ footer strong { color: var(--text-dim); }
     .wrapper { padding: 0 18px; }
 }
 
-/* ============================================================
-   TOAST
-   ============================================================ */
 #toast {
     position: fixed;
     bottom: 32px;
@@ -1108,9 +1056,6 @@ footer strong { color: var(--text-dim); }
 <div class="bg-fx"></div>
 <div class="bg-grid"></div>
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
 <header>
     <div class="wrapper">
         <div class="header-inner">
@@ -1132,9 +1077,6 @@ footer strong { color: var(--text-dim); }
     </div>
 </header>
 
-<!-- ============================================================
-     TABS
-     ============================================================ -->
 <div class="wrapper">
     <div class="tabs-container">
         <div class="tabs">
@@ -1150,13 +1092,9 @@ footer strong { color: var(--text-dim); }
     </div>
 </div>
 
-<!-- ============================================================
-     TAB 1: ABOUT
-     ============================================================ -->
 <section id="tab-about" class="tab-panel active">
     <div class="wrapper">
 
-        <!-- HERO -->
         <div class="hero">
             <div class="hero-tag">
                 <span class="dot"></span>
@@ -1176,7 +1114,6 @@ footer strong { color: var(--text-dim); }
             </div>
         </div>
 
-        <!-- TRUST BAR -->
         <div class="trust-bar">
             <div class="trust-item">
                 <div class="trust-icon green">
@@ -1216,7 +1153,6 @@ footer strong { color: var(--text-dim); }
             </div>
         </div>
 
-        <!-- DOWNLOAD SECTION -->
         <div id="download" class="section">
             <div class="section-head">
                 <span class="eyebrow">Tải xuống</span>
@@ -1243,7 +1179,7 @@ footer strong { color: var(--text-dim); }
                         <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Không chơi được game có Vanguard</li>
                     </ul>
 
-<a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer.exe" class="btn-download" onclick="showToast('Đang tải Gaming Optimizer MAX...')">
+                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer.exe" class="btn-download" onclick="showToast('Đang tải Gaming Optimizer MAX...')">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                         Tải xuống MAX
                     </a>
@@ -1280,7 +1216,7 @@ footer strong { color: var(--text-dim); }
                         <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hiệu năng cao, ổn định 24/7</li>
                     </ul>
 
-                   <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer_AC.exe" class="btn-download" onclick="showToast('Đang tải Gaming Optimizer AC...')">
+                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer_AC.exe" class="btn-download" onclick="showToast('Đang tải Gaming Optimizer AC...')">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                         Tải xuống AC
                     </a>
@@ -1301,9 +1237,7 @@ footer strong { color: var(--text-dim); }
             </div>
         </div>
 
-        <!-- SAFETY SECTIONS -->
         <div class="safety-grid">
-            <!-- GREEN: SAFE -->
             <div class="safety-card green">
                 <div class="s-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -1321,7 +1255,6 @@ footer strong { color: var(--text-dim); }
                 </div>
             </div>
 
-            <!-- YELLOW: WARNING -->
             <div class="safety-card yellow">
                 <div class="s-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
@@ -1340,7 +1273,6 @@ footer strong { color: var(--text-dim); }
             </div>
         </div>
 
-        <!-- FEATURES -->
         <div id="features" class="section">
             <div class="section-head">
                 <span class="eyebrow">Tính năng</span>
@@ -1411,9 +1343,6 @@ footer strong { color: var(--text-dim); }
     </div>
 </section>
 
-<!-- ============================================================
-     TAB 2: CONTACT
-     ============================================================ -->
 <section id="tab-contact" class="tab-panel">
     <div class="wrapper">
 
@@ -1426,10 +1355,9 @@ footer strong { color: var(--text-dim); }
             <p>Key VIP vĩnh viễn — kích hoạt 1 lần, dùng mãi mãi. Hỗ trợ đổi máy 1 lần miễn phí. Bảo hành trọn đời.</p>
         </div>
 
-        <!-- PRICING -->
         <div class="pricing-box">
             <div class="pricing-label">Gói VIP Vĩnh Viễn</div>
-            <div class="price"> 49.000đ</div>
+            <div class="price">49.000đ</div>
             <div class="price-note">Thanh toán 1 lần · Dùng vĩnh viễn · Không phí ẩn</div>
 
             <ul>
@@ -1446,7 +1374,6 @@ footer strong { color: var(--text-dim); }
             </div>
         </div>
 
-        <!-- CONTACT GRID -->
         <div class="contact-grid">
             <a href="https://zalo.me/0984518060" target="_blank" rel="noopener" class="contact-card zalo">
                 <div class="c-icon">
@@ -1473,7 +1400,6 @@ footer strong { color: var(--text-dim); }
             </a>
         </div>
 
-        <!-- FAQ -->
         <div class="section">
             <div class="section-head">
                 <span class="eyebrow">Lưu ý</span>
@@ -1494,7 +1420,7 @@ footer strong { color: var(--text-dim); }
                 </div>
                 <div class="faq-box">
                     <h4>💳 Thanh toán thế nào?</h4>
-                    <p>Chấp nhận <strong>chuyển khoản ngân hàng</strong> (Vietcombank, Techcombank, MB Bank) hoặc <strong>Momo</strong>. Chi tiết sẽ được gửi qua Zalo/Facebook.</p>
+                    <p>Chấp nhận <strong>chuyển khoản MB Bank</strong>. Chi tiết được gửi qua Zalo khi bạn liên hệ.</p>
                 </div>
             </div>
         </div>
@@ -1502,16 +1428,12 @@ footer strong { color: var(--text-dim); }
     </div>
 </section>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
 <footer>
     <div class="wrapper">
         <p>© 2026 <strong>Gaming Optimizer</strong> · Made with ❤️ for gamers</p>
     </div>
 </footer>
 
-<!-- TOAST -->
 <div id="toast">
     <div class="t-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
@@ -1520,9 +1442,6 @@ footer strong { color: var(--text-dim); }
 </div>
 
 <script>
-/* ============================================================
-   TAB SWITCH
-   ============================================================ */
 function switchTab(tabName) {
     document.querySelectorAll('.tab').forEach(t => {
         t.classList.toggle('active', t.dataset.tab === tabName);
@@ -1537,9 +1456,6 @@ function switchTab(tabName) {
     history.replaceState(null, '', '#' + tabName);
 }
 
-/* ============================================================
-   HANDLE HASH ON LOAD
-   ============================================================ */
 window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash.replace('#', '');
     if (hash === 'contact' || hash === 'tab-contact') {
@@ -1549,9 +1465,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/* ============================================================
-   TOAST
-   ============================================================ */
 let toastTimer = null;
 function showToast(message) {
     const toast = document.getElementById('toast');
@@ -1565,14 +1478,10 @@ function showToast(message) {
     }, 3000);
 }
 
-/* ============================================================
-   COPY SHA
-   ============================================================ */
 function copySha(el, hash) {
     navigator.clipboard.writeText(hash).then(() => {
         showToast('Đã copy SHA256 vào clipboard');
     }).catch(() => {
-        // Fallback
         const ta = document.createElement('textarea');
         ta.value = hash;
         document.body.appendChild(ta);
@@ -1583,9 +1492,6 @@ function copySha(el, hash) {
     });
 }
 
-/* ============================================================
-   SMOOTH SCROLL
-   ============================================================ */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
         const href = link.getAttribute('href');
@@ -1598,9 +1504,6 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 });
 
-/* ============================================================
-   KEYBOARD NAV
-   ============================================================ */
 document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
