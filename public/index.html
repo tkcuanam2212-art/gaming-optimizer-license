@@ -551,35 +551,124 @@ header {
 }
 .feature-list .x svg { width: 11px; height: 11px; }
 
+/* ============================================================
+   BUTTON DOWNLOAD - ĐẸP XỊN
+   ============================================================ */
 .btn-download {
     width: 100%;
-    padding: 15px;
-    border-radius: 13px;
+    padding: 16px 24px;
+    border-radius: 14px;
     background: var(--grad-red);
     color: white;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
+    letter-spacing: .2px;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
-    transition: all .28s;
+    gap: 11px;
+    transition: all .3s cubic-bezier(.4, 0, .2, 1);
     text-decoration: none;
-    box-shadow: 0 12px 30px -12px var(--red-glow);
+    box-shadow:
+        0 12px 30px -12px var(--red-glow),
+        inset 0 1px 0 rgba(255,255,255,.2);
+    position: relative;
+    overflow: hidden;
 }
+
+/* Shine effect chạy ngang khi hover */
+.btn-download::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.25) 50%,
+        transparent 100%
+    );
+    transition: left .7s cubic-bezier(.4, 0, .2, 1);
+    pointer-events: none;
+}
+.btn-download:hover::before {
+    left: 100%;
+}
+
+/* Icon download — CỐ ĐỊNH KÍCH THƯỚC */
+.btn-download svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Hiệu ứng icon khi hover — nảy xuống nhẹ */
+.btn-download:hover svg {
+    transform: translateY(2px);
+}
+
+/* Nút hover */
 .btn-download:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 40px -12px var(--red-glow);
+    transform: translateY(-3px);
+    box-shadow:
+        0 20px 46px -12px var(--red-glow),
+        inset 0 1px 0 rgba(255,255,255,.3);
 }
+
+/* Nút active (đang click) */
+.btn-download:active {
+    transform: translateY(-1px) scale(.99);
+    box-shadow:
+        0 8px 20px -10px var(--red-glow),
+        inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+/* Nút AC */
 .version-card.ac .btn-download {
     background: var(--grad-blue);
-    box-shadow: 0 12px 30px -12px var(--blue-glow);
+    box-shadow:
+        0 12px 30px -12px var(--blue-glow),
+        inset 0 1px 0 rgba(255,255,255,.2);
 }
 .version-card.ac .btn-download:hover {
-    box-shadow: 0 18px 40px -12px var(--blue-glow);
+    box-shadow:
+        0 20px 46px -12px var(--blue-glow),
+        inset 0 1px 0 rgba(255,255,255,.3);
+}
+.version-card.ac .btn-download:active {
+    box-shadow:
+        0 8px 20px -10px var(--blue-glow),
+        inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+/* Trạng thái đang tải — disable click */
+.btn-download.loading {
+    pointer-events: none;
+    opacity: .85;
+}
+.btn-download.loading svg {
+    animation: pulseDown 1s ease-in-out infinite;
+}
+@keyframes pulseDown {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(3px); }
+}
+
+/* Trạng thái đã tải — đổi sang màu xanh */
+.btn-download.success {
+    background: linear-gradient(135deg, #16c784 0%, #22e89a 100%) !important;
+    box-shadow:
+        0 12px 30px -12px rgba(22, 199, 132, .6),
+        inset 0 1px 0 rgba(255,255,255,.2) !important;
+    pointer-events: none;
 }
 
 .download-meta {
@@ -1179,9 +1268,9 @@ footer strong { color: var(--text-dim); }
                         <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Không chơi được game có Vanguard</li>
                     </ul>
 
-                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer.exe" class="btn-download" onclick="showToast('Đang tải Gaming Optimizer MAX...')">
+                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer.exe" class="btn-download" onclick="handleDownload(this, 'Gaming Optimizer MAX')">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        Tải xuống MAX
+                        <span class="dl-text">Tải xuống MAX</span>
                     </a>
                     <div class="download-meta">
                         <span>Windows 10/11</span>
@@ -1216,9 +1305,9 @@ footer strong { color: var(--text-dim); }
                         <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hiệu năng cao, ổn định 24/7</li>
                     </ul>
 
-                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer_AC.exe" class="btn-download" onclick="showToast('Đang tải Gaming Optimizer AC...')">
+                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer_AC.exe" class="btn-download" onclick="handleDownload(this, 'Gaming Optimizer AC')">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        Tải xuống AC
+                        <span class="dl-text">Tải xuống AC</span>
                     </a>
                     <div class="download-meta">
                         <span>Windows 10/11</span>
@@ -1492,6 +1581,43 @@ function copySha(el, hash) {
     });
 }
 
+/* ============================================================
+   HANDLE DOWNLOAD — hiệu ứng đẹp
+   ============================================================ */
+function handleDownload(el, appName) {
+    if (el.classList.contains('loading') || el.classList.contains('success')) return;
+
+    const textEl = el.querySelector('.dl-text');
+    const originalText = textEl.textContent;
+    const originalHtml = el.innerHTML;
+
+    // Đổi trạng thái sang "loading"
+    el.classList.add('loading');
+    textEl.textContent = 'Đang tải...';
+    showToast('Đang tải ' + appName + '...');
+
+    // Đợi 1.2s rồi chuyển sang "success"
+    setTimeout(() => {
+        el.classList.remove('loading');
+        el.classList.add('success');
+
+        // Đổi icon thành checkmark
+        el.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span class="dl-text">Đã tải! Kiểm tra Downloads</span>
+        `;
+        showToast('Tải thành công! File đã lưu vào thư mục Downloads');
+
+        // Sau 4s reset lại
+        setTimeout(() => {
+            el.classList.remove('success');
+            el.innerHTML = originalHtml;
+        }, 4000);
+    }, 1200);
+
+    // KHÔNG preventDefault → link vẫn mở để tải file
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
         const href = link.getAttribute('href');
@@ -1519,5 +1645,3 @@ document.addEventListener('keydown', e => {
 </script>
 </body>
 </html>
-
-
