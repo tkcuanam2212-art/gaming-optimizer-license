@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đang tải... — Gaming Optimizer</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg:        #08080c;
+    --bg-2:      #0e0e14;
+    --surface:   #14141c;
+    --surface-2: #1c1c26;
+    --border:    #26262f;
+    --border-hi: #34343f;
+    --text:      #f4f4f8;
+    --text-dim:  #9090a0;
+    --text-mute: #5a5a68;
+    --red:       #ff3355;
+    --red-hi:    #ff5577;
+    --red-glow:  rgba(255, 51, 85, .45);
+    --blue:      #3d8bff;
+    --blue-glow: rgba(61, 139, 255, .45);
+    --green:     #16c784;
+    --green-hi:  #22e89a;
+    --green-glow: rgba(22, 199, 132, .45);
+    --yellow:    #f5c542;
+    --grad-red:  linear-gradient(135deg, #ff3355 0%, #ff5577 100%);
+    --grad-blue: linear-gradient(135deg, #3d8bff 0%, #66a3ff 100%);
+    --grad-green: linear-gradient(135deg, #16c784 0%, #22e89a 100%);
+    --shadow-lg: 0 24px 64px -16px rgba(0,0,0,.7);
+    --shadow-md: 0 12px 32px -8px rgba(0,0,0,.6);
+    --radius:    18px;
+    --radius-sm: 12px;
+}
+
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+}
+
+.bg-fx {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+.bg-fx::before,
+.bg-fx::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: .12;
+    animation: orbFloat 24s ease-in-out infinite;
+}
+.bg-fx::before {
+    width: 700px; height: 700px;
+    background: var(--red);
+    top: -250px; left: -250px;
+}
+.bg-fx::after {
+    width: 600px; height: 600px;
+    background: var(--blue);
+    bottom: -200px; right: -200px;
+    animation-delay: -12s;
+}
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(80px, 50px) scale(1.15); }
+}
+
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px 44px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--grad-red);
+}
+.card.ac::before {
+    background: var(--grad-blue);
+}
+
+/* Logo */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -.2px;
+}
+.logo-icon {
+    width: 32px; height: 32px;
+    background: var(--grad-red);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 22px -6px var(--red-glow);
+}
+.card.ac .logo-icon {
+    background: var(--grad-blue);
+    box-shadow: 0 8px 22px -6px var(--blue-glow);
+}
+.logo-icon svg { width: 17px; height: 17px; fill: white; }
+
+/* Icon chính — animation quay tròn */
+.main-icon {
+    width: 88px; height: 88px;
+    margin: 0 auto 28px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--grad-red);
+    box-shadow: 0 16px 42px -12px var(--red-glow);
+    position: relative;
+    animation: pulseIcon 2s ease-in-out infinite;
+}
+.card.ac .main-icon {
+    background: var(--grad-blue);
+    box-shadow: 0 16px 42px -12px var(--blue-glow);
+}
+.main-icon.success {
+    background: var(--grad-green) !important;
+    box-shadow: 0 16px 42px -12px var(--green-glow) !important;
+    animation: successBounce .6s cubic-bezier(.4, 0, .2, 1);
+}
+.main-icon svg {
+    width: 42px; height: 42px;
+    fill: white;
+    transition: all .3s;
+}
+.main-icon .icon-download,
+.main-icon .icon-success {
+    display: none;
+}
+.main-icon.show-download .icon-download { display: block; }
+.main-icon.show-success .icon-success  { display: block; }
+
+@keyframes pulseIcon {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.04); }
+}
+@keyframes successBounce {
+    0%   { transform: scale(.7); }
+    60%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Vòng tròn loading quay */
+.loading-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgba(255, 255, 255, .4);
+    border-right-color: rgba(255, 255, 255, .15);
+    animation: spinRing 1s linear infinite;
+    opacity: 0;
+    transition: opacity .3s;
+}
+.main-icon.loading .loading-ring {
+    opacity: 1;
+}
+@keyframes spinRing {
+    to { transform: rotate(360deg); }
+}
+
+/* Tiêu đề */
+.title {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    background: linear-gradient(180deg, #fff 0%, #a0a0b0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    line-height: 1.65;
+}
+
+/* Progress */
+.progress-wrap {
+    margin-bottom: 24px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .4s;
+}
+.progress-wrap.show {
+    opacity: 1;
+    max-height: 100px;
+}
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+.progress-bar {
+    height: 6px;
+    background: var(--bg-2);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--grad-red);
+    border-radius: 999px;
+    width: 0%;
+    transition: width .3s ease;
+    box-shadow: 0 0 12px var(--red-glow);
+}
+.card.ac .progress-fill {
+    background: var(--grad-blue);
+    box-shadow: 0 0 12px var(--blue-glow);
+}
+
+/* Status message */
+.status-msg {
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    transition: all .3s;
+}
+.status-msg.loading {
+    background: linear-gradient(135deg, rgba(245, 197, 66, .1), rgba(245, 197, 66, .02));
+    border: 1px solid rgba(245, 197, 66, .25);
+    color: var(--yellow);
+}
+.status-msg.success {
+    background: linear-gradient(135deg, rgba(22, 199, 132, .12), rgba(22, 199, 132, .03));
+    border: 1px solid rgba(22, 199, 132, .3);
+    color: var(--green-hi);
+}
+.status-msg svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Button manual download */
+.btn-manual {
+    width: 100%;
+    padding: 15px 24px;
+    border-radius: 13px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-hi);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all .25s;
+    text-decoration: none;
+    margin-bottom: 20px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    border-width: 0;
+    transition: all .4s;
+}
+.btn-manual.show {
+    opacity: 1;
+    max-height: 60px;
+    padding: 15px 24px;
+    border-width: 1px;
+}
+.btn-manual:hover {
+    background: var(--surface-3, #24242f);
+    border-color: var(--red);
+    transform: translateY(-2px);
+}
+.card.ac .btn-manual:hover {
+    border-color: var(--blue);
+}
+.btn-manual svg { width: 17px; height: 17px; }
+
+/* Info box */
+.info-box {
+    padding: 18px 20px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-align: left;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin-top: 24px;
+}
+.info-box strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+.info-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.info-box li {
+    padding-left: 20px;
+    position: relative;
+}
+.info-box li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 700;
+}
+.card.ac .info-box li::before {
+    color: var(--blue);
+}
+
+/* Link back */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 24px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color .2s;
+}
+.back-link:hover {
+    color: var(--text);
+}
+.back-link svg { width: 14px; height: 14px; }
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    z-index: 999;
+    animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .card { padding: 36px 24px; }
+    .title { font-size: 24px; }
+    .main-icon { width: 76px; height: 76px; }
+    .main-icon svg { width: 36px; height: 36px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-fx"></div>
+<div class="bg-grid"></div>
+
+<div class="card" id="card">
+    <a href="/" class="logo">
+        <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+        </div>
+        <span>Gaming Optimizer</span>
+    </a>
+
+    <div class="main-icon show-download loading" id="mainIcon">
+        <!-- Icon download -->
+        <svg class="icon-download" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <!-- Icon success -->
+        <svg class="icon-success" viewBox="0 0 24 24">
+            <path d="M20 6L9 17l-5-5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <div class="loading-ring"></div>
+    </div>
+
+    <h1 class="title" id="title">Đang tải xuống...</h1>
+    <p class="subtitle" id="subtitle">File đang được tải về máy bạn. Vui lòng đợi trong giây lát.</p>
+
+    <!-- Progress bar -->
+    <div class="progress-wrap" id="progressWrap">
+        <div class="progress-label">
+            <span id="progressText">Đang chuẩn bị...</span>
+            <span id="progressPct">0%</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <!-- Status message -->
+    <div class="status-msg loading" id="statusMsg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <span id="statusText">Đang kết nối tới máy chủ...</span>
+    </div>
+
+    <!-- Manual download button (dự phòng nếu browser chặn auto-download) -->
+    <a href="#" class="btn-manual" id="btnManual">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        Nhấn vào đây nếu tải không tự động
+    </a>
+
+    <!-- Info box -->
+    <div class="info-box">
+        <strong>📋 Sau khi tải xong:</strong>
+        <ul>
+            <li>Mở file <code id="fileName">GamingOptimizer.exe</code> trong thư mục <b>Downloads</b></li>
+            <li>Chuột phải → <b>Run as administrator</b></li>
+            <li>Nhập key VIP (nếu chưa có, liên hệ Zalo)</li>
+            <li>Restart máy để áp dụng tối ưu</li>
+        </ul>
+    </div>
+
+    <a href="/" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Về trang chủ
+    </a>
+</div>
+
+<script>
+/* ============================================================
+   CẤU HÌNH — sửa nếu cần
+   ============================================================ */
+const DOWNLOADS = {
+    max: {
+        url: 'https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer.exe',
+        fileName: 'GamingOptimizer.exe',
+        appName: 'Gaming Optimizer MAX',
+        isAC: false
+    },
+    ac: {
+        url: 'https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5/GamingOptimizer_AC.exe',
+        fileName: 'GamingOptimizer_AC.exe',
+        appName: 'Gaming Optimizer AC',
+        isAC: true
+    }
+};
+
+/* ============================================================
+   LẤY QUERY PARAM ?app=max hoặc ?app=ac
+   ============================================================ */
+function getQueryParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+}
+
+const appKey = getQueryParam('app') || 'max';
+const config = DOWNLOADS[appKey] || DOWNLOADS.max;
+
+/* ============================================================
+   UPDATE UI theo loại app
+   ============================================================ */
+const card = document.getElementById('card');
+const fileNameEl = document.getElementById('fileName');
+
+if (config.isAC) {
+    card.classList.add('ac');
+}
+fileNameEl.textContent = config.fileName;
+document.title = `Đang tải ${config.appName}...`;
+document.getElementById('btnManual').href = config.url;
+document.getElementById('btnManual').setAttribute('download', config.fileName);
+
+/* ============================================================
+   ELEMENTS
+   ============================================================ */
+const titleEl       = document.getElementById('title');
+const subtitleEl    = document.getElementById('subtitle');
+const mainIcon      = document.getElementById('mainIcon');
+const progressWrap  = document.getElementById('progressWrap');
+const progressFill  = document.getElementById('progressFill');
+const progressPct   = document.getElementById('progressPct');
+const progressText  = document.getElementById('progressText');
+const statusMsg     = document.getElementById('statusMsg');
+const statusText    = document.getElementById('statusText');
+const btnManual     = document.getElementById('btnManual');
+
+/* ============================================================
+   BƯỚC 1: Hiển thị progress bar với animation giả lập
+   ============================================================ */
+progressWrap.classList.add('show');
+
+let progress = 0;
+const progressSteps = [
+    { target: 25,  text: 'Đang kết nối tới GitHub...',    delay: 300 },
+    { target: 60,  text: 'Đang xác minh file...',          delay: 600 },
+    { target: 90,  text: 'Đang chuẩn bị tải xuống...',     delay: 900 },
+    { target: 100, text: 'Sẵn sàng!',                       delay: 1200 }
+];
+
+progressSteps.forEach(step => {
+    setTimeout(() => {
+        progress = step.target;
+        progressFill.style.width = progress + '%';
+        progressPct.textContent = progress + '%';
+        progressText.textContent = step.text;
+        statusText.textContent = step.text;
+    }, step.delay);
+});
+
+/* ============================================================
+   BƯỚC 2: Trigger auto-download sau 1.5s
+   ============================================================ */
+setTimeout(() => {
+    triggerDownload();
+}, 1500);
+
+function triggerDownload() {
+    // Tạo thẻ <a> ẩn để trigger download
+    const link = document.createElement('a');
+    link.href = config.url;
+    link.download = config.fileName;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Sau khi trigger, chuyển UI sang trạng thái thành công
+    setTimeout(showSuccess, 800);
+}
+
+/* ============================================================
+   BƯỚC 3: Hiển thị trạng thái thành công
+   ============================================================ */
+function showSuccess() {
+    // Đổi icon sang checkmark xanh
+    mainIcon.classList.remove('loading', 'show-download');
+    mainIcon.classList.add('success', 'show-success');
+
+    // Đổi title
+    titleEl.textContent = 'Tải xuống hoàn tất! 🎉';
+    subtitleEl.innerHTML = `File <b>${config.fileName}</b> đã được tải về máy bạn. Kiểm tra thư mục <b>Downloads</b> nhé!`;
+
+    // Đổi status
+    statusMsg.classList.remove('loading');
+    statusMsg.classList.add('success');
+    statusText.textContent = `Đã tải ${config.appName} thành công!`;
+
+    // Progress 100% + xanh
+    progressFill.style.width = '100%';
+    progressPct.textContent = '100%';
+    progressText.textContent = 'Hoàn tất';
+    progressFill.style.background = 'linear-gradient(135deg, #16c784 0%, #22e89a 100%)';
+    progressFill.style.boxShadow = '0 0 12px rgba(22, 199, 132, .5)';
+
+    // Hiện nút manual download phòng trường hợp cần tải lại
+    setTimeout(() => {
+        btnManual.classList.add('show');
+        btnManual.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Tải lại ${config.appName}
+        `;
+    }, 500);
+
+    // Bắn confetti 🎉
+    fireConfetti();
+}
+
+/* ============================================================
+   CONFETTI
+   ============================================================ */
+function fireConfetti() {
+    const colors = ['#ff3355', '#3d8bff', '#16c784', '#f5c542', '#a855f7'];
+    const count = 50;
+
+    for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+            const conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.width = (Math.random() * 6 + 6) + 'px';
+            conf.style.height = (Math.random() * 6 + 6) + 'px';
+            conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+            conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            conf.style.animationDelay = (Math.random() * 0.5) + 's';
+            document.body.appendChild(conf);
+
+            setTimeout(() => conf.remove(), 4000);
+        }, i * 30);
+    }
+}
+
+/* ============================================================
+   XỬ LÝ: Nếu browser chặn auto-download
+   → sau 5s nếu không chắc đã trigger, hiện nút manual
+   ============================================================ */
+setTimeout(() => {
+    if (!btnManual.classList.contains('show')) {
+        btnManual.classList.add('show');
+    }
+}, 5000);
+</script>
+</body>
+</html>
