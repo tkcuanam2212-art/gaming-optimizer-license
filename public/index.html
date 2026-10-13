@@ -551,9 +551,6 @@ header {
 }
 .feature-list .x svg { width: 11px; height: 11px; }
 
-/* ============================================================
-   BUTTON DOWNLOAD - ĐẸP XỊN
-   ============================================================ */
 .btn-download {
     width: 100%;
     padding: 16px 24px;
@@ -578,8 +575,6 @@ header {
     position: relative;
     overflow: hidden;
 }
-
-/* Shine effect chạy ngang khi hover */
 .btn-download::before {
     content: '';
     position: absolute;
@@ -587,20 +582,11 @@ header {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255,255,255,.25) 50%,
-        transparent 100%
-    );
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.25) 50%, transparent 100%);
     transition: left .7s cubic-bezier(.4, 0, .2, 1);
     pointer-events: none;
 }
-.btn-download:hover::before {
-    left: 100%;
-}
-
-/* Icon download — CỐ ĐỊNH KÍCH THƯỚC */
+.btn-download:hover::before { left: 100%; }
 .btn-download svg {
     width: 18px !important;
     height: 18px !important;
@@ -609,29 +595,16 @@ header {
     vertical-align: middle;
     transition: transform .3s cubic-bezier(.4, 0, .2, 1);
 }
-
-/* Hiệu ứng icon khi hover — nảy xuống nhẹ */
-.btn-download:hover svg {
-    transform: translateY(2px);
-}
-
-/* Nút hover */
+.btn-download:hover svg { transform: translateY(2px); }
 .btn-download:hover {
     transform: translateY(-3px);
     box-shadow:
         0 20px 46px -12px var(--red-glow),
         inset 0 1px 0 rgba(255,255,255,.3);
 }
-
-/* Nút active (đang click) */
 .btn-download:active {
     transform: translateY(-1px) scale(.99);
-    box-shadow:
-        0 8px 20px -10px var(--red-glow),
-        inset 0 1px 0 rgba(255,255,255,.2);
 }
-
-/* Nút AC */
 .version-card.ac .btn-download {
     background: var(--grad-blue);
     box-shadow:
@@ -642,33 +615,6 @@ header {
     box-shadow:
         0 20px 46px -12px var(--blue-glow),
         inset 0 1px 0 rgba(255,255,255,.3);
-}
-.version-card.ac .btn-download:active {
-    box-shadow:
-        0 8px 20px -10px var(--blue-glow),
-        inset 0 1px 0 rgba(255,255,255,.2);
-}
-
-/* Trạng thái đang tải — disable click */
-.btn-download.loading {
-    pointer-events: none;
-    opacity: .85;
-}
-.btn-download.loading svg {
-    animation: pulseDown 1s ease-in-out infinite;
-}
-@keyframes pulseDown {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(3px); }
-}
-
-/* Trạng thái đã tải — đổi sang màu xanh */
-.btn-download.success {
-    background: linear-gradient(135deg, #16c784 0%, #22e89a 100%) !important;
-    box-shadow:
-        0 12px 30px -12px rgba(22, 199, 132, .6),
-        inset 0 1px 0 rgba(255,255,255,.2) !important;
-    pointer-events: none;
 }
 
 .download-meta {
@@ -722,6 +668,150 @@ header {
     transition: opacity .2s;
 }
 .sha-box:hover .copy-hint { opacity: 1; }
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 36px;
+}
+
+.testimonial {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 26px;
+    position: relative;
+    transition: all .28s cubic-bezier(.4, 0, .2, 1);
+}
+.testimonial:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hi);
+    box-shadow: var(--shadow-md);
+}
+
+.testimonial .quote-mark {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--red);
+    opacity: .12;
+    line-height: .8;
+    font-family: Georgia, 'Times New Roman', serif;
+    pointer-events: none;
+}
+
+.testimonial-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.testimonial-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: white;
+    flex-shrink: 0;
+    letter-spacing: -.5px;
+    box-shadow: 0 6px 16px -4px rgba(0,0,0,.4);
+}
+
+.testimonial-info .name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.2;
+}
+.testimonial-info .role {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 3px;
+}
+
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--blue);
+    flex-shrink: 0;
+}
+.verified-badge svg {
+    width: 9px;
+    height: 9px;
+    fill: white;
+}
+
+.testimonial-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 12px;
+}
+.testimonial-stars svg {
+    width: 15px;
+    height: 15px;
+    fill: #f5c542;
+}
+
+.testimonial-text {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.7;
+    opacity: .9;
+}
+.testimonial-text strong {
+    color: var(--red);
+    font-weight: 700;
+}
+
+.testimonial-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.testimonial-stat {
+    text-align: center;
+}
+.testimonial-stat .num {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: var(--grad-red);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.testimonial-stat .lbl {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 500;
+    letter-spacing: .3px;
+}
 
 .safety-grid {
     display: grid;
@@ -1101,6 +1191,8 @@ footer strong { color: var(--text-dim); }
     .pricing-box { padding: 34px 24px; }
     .hero { padding: 44px 0 64px; }
     .wrapper { padding: 0 18px; }
+    .testimonial-stats { gap: 24px; }
+    .testimonial-stat .num { font-size: 22px; }
 }
 
 #toast {
@@ -1270,7 +1362,7 @@ footer strong { color: var(--text-dim); }
 
                     <a href="/thank-you.html?app=max" class="btn-download">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        <span class="dl-text">Tải xuống MAX</span>
+                        Tải xuống MAX
                     </a>
                     <div class="download-meta">
                         <span>Windows 10/11</span>
@@ -1307,7 +1399,7 @@ footer strong { color: var(--text-dim); }
 
                     <a href="/thank-you.html?app=ac" class="btn-download">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        <span class="dl-text">Tải xuống AC</span>
+                        Tải xuống AC
                     </a>
                     <div class="download-meta">
                         <span>Windows 10/11</span>
@@ -1322,6 +1414,166 @@ footer strong { color: var(--text-dim); }
                         <span class="sha-value">d0fe50c6de0b8e62ba0367dae723baa3fa5a0aeea760817732685e34e03a44b5</span>
                         <span class="copy-hint">Click để copy</span>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             TESTIMONIALS
+             ============================================================ -->
+        <div class="section">
+            <div class="section-head">
+                <span class="eyebrow">Đánh giá</span>
+                <h2>Khách hàng nói gì</h2>
+                <p>Hơn 500+ game thủ đã tin dùng Gaming Optimizer để nâng tầm trải nghiệm chơi game.</p>
+            </div>
+
+            <div class="testimonials">
+
+                <!-- Review 1 -->
+                <div class="testimonial">
+                    <span class="quote-mark">"</span>
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #ff3355, #ff5577);">MT</div>
+                        <div class="testimonial-info">
+                            <div class="name">
+                                Nguyễn Minh Tuấn
+                                <span class="verified-badge">
+                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </span>
+                            </div>
+                            <div class="role">CS2 Player · Rank Global Elite</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="testimonial-text">PC mình i5 9400F + GTX 1660, trước chơi CS2 được 120-140 FPS, sau khi dùng tool lên ổn định <strong>180-200 FPS</strong>. Aim mượt hơn hẳn, không còn giật khi vào smoke. Quá đáng tiền.</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="testimonial">
+                    <span class="quote-mark">"</span>
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #a855f7, #c084fc);">HL</div>
+                        <div class="testimonial-info">
+                            <div class="name">
+                                Trần Hoàng Long
+                                <span class="verified-badge">
+                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </span>
+                            </div>
+                            <div class="role">Valorant · Rank Immortal 3</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Mình chơi Valorant, ping hay nhảy 40-60ms làm whiff liên tục. Sau khi tối ưu mạng giờ ổn định <strong>25-30ms</strong>, headshot ảo diệu hơn hẳn. Không biết do tool hay do trình, nhưng cứ lên rank đã 😄</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial">
+                    <span class="quote-mark">"</span>
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #3d8bff, #66a3ff);">TH</div>
+                        <div class="testimonial-info">
+                            <div class="name">
+                                Lê Thanh Hà
+                                <span class="verified-badge">
+                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </span>
+                            </div>
+                            <div class="role">Streamer LOL · 12k Followers</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Stream LOL mà lâu lâu drop frame, OBS với game giành RAM. Dùng tool này cái máy mượt hẳn, view ổn định <strong>60fps không tụt</strong> luôn. Viewer cũng khen stream nét hơn.</p>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="testimonial">
+                    <span class="quote-mark">"</span>
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #16c784, #22e89a);">QB</div>
+                        <div class="testimonial-info">
+                            <div class="name">
+                                Phạm Quốc Bảo
+                                <span class="verified-badge">
+                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </span>
+                            </div>
+                            <div class="role">PUBG Mobile · Conqueror</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Chơi PUBG Mobile trên giả lập, trước hay bị lag spike khi combat. Sau khi áp dụng profile được ổn định, <strong>không còn tụt FPS</strong> khi đấu súng. 49k mà được vậy thì quá rẻ.</p>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="testimonial">
+                    <span class="quote-mark">"</span>
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f5c542, #f5a742);">ĐA</div>
+                        <div class="testimonial-info">
+                            <div class="name">
+                                Vũ Đức Anh
+                                <span class="verified-badge">
+                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </span>
+                            </div>
+                            <div class="role">Gamer PC cấu hình thấp</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p class="testimonial-text">Máy mình cùi i3 8100 + 8GB RAM, trước chơi LOL chỉ được 60fps medium. Sau khi dùng tool + set profile được <strong>90-100fps low</strong>, mượt hơn hẳn. Cài 10 phút là xong, dễ dùng.</p>
+                </div>
+
+            </div>
+
+            <!-- Stats bar -->
+            <div class="testimonial-stats">
+                <div class="testimonial-stat">
+                    <div class="num">500+</div>
+                    <div class="lbl">Khách hàng</div>
+                </div>
+                <div class="testimonial-stat">
+                    <div class="num">4.9/5</div>
+                    <div class="lbl">Đánh giá trung bình</div>
+                </div>
+                <div class="testimonial-stat">
+                    <div class="num">+40%</div>
+                    <div class="lbl">FPS trung bình</div>
+                </div>
+                <div class="testimonial-stat">
+                    <div class="num">24/7</div>
+                    <div class="lbl">Hỗ trợ</div>
                 </div>
             </div>
         </div>
@@ -1579,43 +1831,6 @@ function copySha(el, hash) {
         document.body.removeChild(ta);
         showToast('Đã copy SHA256 vào clipboard');
     });
-}
-
-/* ============================================================
-   HANDLE DOWNLOAD — hiệu ứng đẹp
-   ============================================================ */
-function handleDownload(el, appName) {
-    if (el.classList.contains('loading') || el.classList.contains('success')) return;
-
-    const textEl = el.querySelector('.dl-text');
-    const originalText = textEl.textContent;
-    const originalHtml = el.innerHTML;
-
-    // Đổi trạng thái sang "loading"
-    el.classList.add('loading');
-    textEl.textContent = 'Đang tải...';
-    showToast('Đang tải ' + appName + '...');
-
-    // Đợi 1.2s rồi chuyển sang "success"
-    setTimeout(() => {
-        el.classList.remove('loading');
-        el.classList.add('success');
-
-        // Đổi icon thành checkmark
-        el.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="dl-text">Đã tải! Kiểm tra Downloads</span>
-        `;
-        showToast('Tải thành công! File đã lưu vào thư mục Downloads');
-
-        // Sau 4s reset lại
-        setTimeout(() => {
-            el.classList.remove('success');
-            el.innerHTML = originalHtml;
-        }, 4000);
-    }, 1200);
-
-    // KHÔNG preventDefault → link vẫn mở để tải file
 }
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
