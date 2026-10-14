@@ -1,10 +1,14 @@
-// api/verify.js — v2.0 Redis + JWT + Rate limit
+// api/verify.js — v2.0.1 Redis + JWT + Rate limit (fixed env names)
 import { Redis } from '@upstash/redis';
 import { Ratelimit } from '@upstash/ratelimit';
 import jwt from 'jsonwebtoken';
 import { sql } from './_lib/db.js';
 
-const redis = Redis.fromEnv();
+// ★ Đọc env đúng tên do Vercel + Upstash sinh ra
+const redis = new Redis({
+  url:   process.env.UPSTASH_REDIS_REST_KV_REST_API_URL,
+  token: process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN,
+});
 
 const ratelimit = new Ratelimit({
   redis,
@@ -83,14 +87,14 @@ export default async function handler(req, res) {
       await redis.set(cacheKey, JSON.stringify(k), { ex: CACHE_TTL });
     }
 
-    // BƯỚC 5: Tạo JWT
+    // BƯỚC 5: JWT
     const token = jwt.sign(
       { key_code: key, hwid: hwid, key_type: k.key_type },
       JWT_SECRET,
       { expiresIn: JWT_TTL }
     );
 
-    // BƯỚC 6: Trả response
+    // BƯỚC 6: Response
     return res.json({
       valid: true,
       type: k.key_type,
