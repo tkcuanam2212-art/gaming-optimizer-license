@@ -241,6 +241,37 @@ body {
 }
 .bank-info:hover .copy-hint { opacity: 1; }
 
+/* CSS CHO MÃ QR */
+.qr-container {
+    text-align: center;
+    margin: 16px 0 24px;
+    padding: 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.qr-image {
+    width: 100%;
+    max-width: 240px;
+    border-radius: 12px;
+    border: 4px solid #fff; 
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+    cursor: zoom-in;
+}
+.qr-image:hover {
+    transform: scale(1.05);
+}
+.qr-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 12px;
+    font-weight: 600;
+}
+
 .note-box {
     background: linear-gradient(135deg, rgba(245, 197, 66, .08), rgba(245, 197, 66, .02));
     border: 1px solid rgba(245, 197, 66, .25);
@@ -476,7 +507,7 @@ footer strong { color: var(--text-dim); }
         <div class="payment-card">
             <div class="label">Thông tin thanh toán</div>
             <h2>Chuyển khoản MB Bank</h2>
-            <p class="sub">Chuyển khoản tới tài khoản dưới đây, sau đó <strong>chụp ảnh giao dịch</strong> gửi qua Zalo để nhận key.</p>
+            <p class="sub">Chuyển khoản tới tài khoản dưới đây hoặc <strong>quét mã QR</strong>, sau đó <strong>chụp ảnh giao dịch</strong> gửi qua Zalo để nhận key.</p>
 
             <div class="bank-info" onclick="copyText('78922122010', this)">
                 <span class="copy-hint">Click để copy</span>
@@ -496,6 +527,13 @@ footer strong { color: var(--text-dim); }
                     <span class="k">Số tiền</span>
                     <span class="v highlight">49.000đ</span>
                 </div>
+            </div>
+
+            <!-- KHỐI QR THANH TOÁN -->
+            <div class="qr-container">
+                <!-- Nhớ đảm bảo file ảnh đã được upload lên github với tên qr-mb.png -->
+                <img src="qr-mb.png" alt="QR MB Bank NGUYEN CONG BAO CHUNG" class="qr-image" onclick="window.open(this.src, '_blank')" title="Click để phóng to">
+                <p class="qr-text">Quét mã QR để thanh toán tự động</p>
             </div>
 
             <div class="note-box">
