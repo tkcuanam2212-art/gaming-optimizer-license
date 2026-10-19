@@ -1041,6 +1041,32 @@ header {
     flex-shrink: 0;
 }
 
+/* CSS CHO MÃ QR TRONG PRICING BOX */
+.qr-container {
+    margin: 24px auto 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.qr-image {
+    width: 100%;
+    max-width: 240px;
+    border-radius: 12px;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+.qr-image:hover {
+    transform: scale(1.05);
+}
+.qr-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1710,6 +1736,12 @@ footer strong { color: var(--text-dim); }
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hoàn tiền 100% nếu không dùng được</li>
             </ul>
 
+            <!-- CHÈN KHỐI QR VÀO ĐÂY -->
+            <div class="qr-container">
+                <img src="qr-mb.png" alt="QR MB Bank NGUYEN CONG BAO CHUNG" class="qr-image" onclick="window.open(this.src, '_blank')" title="Click để phóng to">
+                <p class="qr-text">Quét mã QR để thanh toán tự động</p>
+            </div>
+
             <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">
                 Liên hệ qua <strong style="color:var(--text)">Zalo</strong> hoặc <strong style="color:var(--text)">Facebook</strong> bên dưới để được tư vấn và nhận key ngay sau khi thanh toán.
             </div>
@@ -1761,7 +1793,7 @@ footer strong { color: var(--text-dim); }
                 </div>
                 <div class="faq-box">
                     <h4>💳 Thanh toán thế nào?</h4>
-                    <p>Chấp nhận <strong>chuyển khoản MB Bank</strong>. Chi tiết được gửi qua Zalo khi bạn liên hệ.</p>
+                    <p>Chấp nhận <strong>chuyển khoản MB Bank</strong> (Quét QR hoặc chuyển tay). Chi tiết được gửi qua Zalo khi bạn liên hệ.</p>
                 </div>
             </div>
         </div>
