@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Gaming Optimizer v5.0 — Tối ưu gaming chuyên nghiệp. Tăng FPS, giảm ping, an toàn 100%.">
-<title>Gaming Optimizer v5.0 — Tối Ưu Gaming Chuyên Nghiệp</title>
+<meta name="description" content="Gaming Optimizer VIP & Windows Ghost Spectre Superlite — Tối ưu PC Gaming chuyên nghiệp, bảo hành trọn đời, giá chỉ từ 99K">
+<title>Gaming Optimizer — Tối Ưu Gaming Chuyên Nghiệp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -27,11 +30,12 @@
     --blue-glow: rgba(61, 139, 255, .45);
     --green:     #16c784;
     --green-hi:  #22e89a;
+    --green-glow:rgba(22, 199, 132, .45);
     --yellow:    #f5c542;
     --purple:    #a855f7;
-    --purple-hi: #c084fc;
-    --grad-red:  linear-gradient(135deg, #ff3355 0%, #ff5577 100%);
-    --grad-blue: linear-gradient(135deg, #3d8bff 0%, #66a3ff 100%);
+    --grad-red:    linear-gradient(135deg, #ff3355 0%, #ff5577 100%);
+    --grad-blue:   linear-gradient(135deg, #3d8bff 0%, #66a3ff 100%);
+    --grad-green:  linear-gradient(135deg, #16c784 0%, #22e89a 100%);
     --grad-purple: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
     --shadow-lg: 0 24px 64px -16px rgba(0,0,0,.7);
     --shadow-md: 0 12px 32px -8px rgba(0,0,0,.6);
@@ -53,7 +57,7 @@ body {
 }
 
 code {
-    font-family: 'Consolas', 'Monaco', monospace;
+    font-family: Consolas, 'Monaco', monospace;
     font-size: .9em;
     background: var(--surface-2);
     padding: 2px 6px;
@@ -61,43 +65,21 @@ code {
     color: var(--green);
 }
 
-.bg-fx {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
+/* ================= BACKGROUND ================= */
+.bg-fx { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.bg-fx::before, .bg-fx::after {
+    content: ''; position: absolute; border-radius: 50%;
+    filter: blur(140px); opacity: .12; animation: orbFloat 24s ease-in-out infinite;
 }
-.bg-fx::before,
-.bg-fx::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(140px);
-    opacity: .12;
-    animation: orbFloat 24s ease-in-out infinite;
-}
-.bg-fx::before {
-    width: 700px; height: 700px;
-    background: var(--red);
-    top: -250px; left: -250px;
-}
-.bg-fx::after {
-    width: 600px; height: 600px;
-    background: var(--blue);
-    bottom: -200px; right: -200px;
-    animation-delay: -12s;
-}
+.bg-fx::before { width: 700px; height: 700px; background: var(--red); top: -250px; left: -250px; }
+.bg-fx::after  { width: 600px; height: 600px; background: var(--blue); bottom: -200px; right: -200px; animation-delay: -12s; }
 @keyframes orbFloat {
     0%, 100% { transform: translate(0, 0) scale(1); }
     50%      { transform: translate(80px, 50px) scale(1.15); }
 }
 
 .bg-grid {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background-image:
         linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
@@ -106,140 +88,71 @@ code {
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
 }
 
-.wrapper {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-}
+.wrapper { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
+/* ================= HEADER ================= */
 header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     background: rgba(8, 8, 12, .78);
     border-bottom: 1px solid var(--border);
 }
-
-.header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 0;
-}
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: var(--text);
-    font-weight: 700;
-    font-size: 17px;
-    letter-spacing: -.3px;
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--text);
+    font-weight: 700; font-size: 17px; letter-spacing: -.3px;
 }
 .logo-icon {
-    width: 36px; height: 36px;
-    background: var(--grad-red);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 36px; height: 36px; background: var(--grad-red);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
     box-shadow: 0 8px 24px -6px var(--red-glow);
 }
 .logo-icon svg { width: 19px; height: 19px; fill: white; }
 
 .badge-version {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 9px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    color: var(--text-dim);
-    letter-spacing: .5px;
+    font-size: 11px; font-weight: 600; padding: 4px 9px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 999px; color: var(--text-dim); letter-spacing: .5px;
 }
 
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+.header-actions { display: flex; align-items: center; gap: 10px; }
 
 .btn-small {
-    padding: 9px 16px;
-    border-radius: 9px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all .2s;
-    font-family: inherit;
+    padding: 9px 16px; border-radius: 9px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); font-size: 13px; font-weight: 600;
+    text-decoration: none; cursor: pointer; transition: all .2s; font-family: inherit;
+    display: inline-flex; align-items: center; gap: 6px;
 }
-.btn-small:hover {
-    background: var(--surface-2);
-    border-color: var(--border-hi);
-}
-
+.btn-small:hover { background: var(--surface-2); border-color: var(--border-hi); }
 .btn-small.primary {
-    background: var(--grad-red);
-    border: none;
-    color: white;
+    background: var(--grad-red); border: none; color: white;
     box-shadow: 0 8px 20px -8px var(--red-glow);
 }
-.btn-small.primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 26px -8px var(--red-glow);
-}
+.btn-small.primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -8px var(--red-glow); }
 
-.tabs-container {
-    display: flex;
-    justify-content: center;
-    padding: 44px 0 0;
-}
-
+/* ================= TABS ================= */
+.tabs-container { display: flex; justify-content: center; padding: 44px 0 0; }
 .tabs {
-    display: inline-flex;
-    gap: 4px;
-    padding: 6px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    box-shadow: var(--shadow-md);
+    display: inline-flex; gap: 4px; padding: 6px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; box-shadow: var(--shadow-md); flex-wrap: wrap; justify-content: center;
 }
-
 .tab {
-    padding: 12px 26px;
-    border-radius: 999px;
-    border: none;
-    background: transparent;
-    color: var(--text-dim);
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all .3s cubic-bezier(.4, 0, .2, 1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
+    padding: 12px 24px; border-radius: 999px; border: none;
+    background: transparent; color: var(--text-dim);
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all .3s cubic-bezier(.4, 0, .2, 1);
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
 }
 .tab svg { width: 15px; height: 15px; }
 .tab:hover { color: var(--text); }
 .tab.active {
-    background: var(--grad-red);
-    color: white;
+    background: var(--grad-red); color: white;
     box-shadow: 0 8px 22px -8px var(--red-glow);
-}
-.tab:nth-child(2).active {
-    background: var(--grad-blue);
-    box-shadow: 0 8px 22px -8px var(--blue-glow);
 }
 
 .tab-panel { display: none; animation: fadeIn .5s ease; }
@@ -249,31 +162,19 @@ header {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.hero {
-    padding: 64px 0 84px;
-    text-align: center;
-}
+/* ================= HERO ================= */
+.hero { padding: 60px 0 70px; text-align: center; }
 
 .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 15px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-dim);
-    margin-bottom: 26px;
-    letter-spacing: .3px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 15px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: var(--text-dim);
+    margin-bottom: 26px; letter-spacing: .3px;
 }
 .hero-tag .dot {
-    width: 6px; height: 6px;
-    background: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--green);
-    animation: pulseDot 2s ease-in-out infinite;
+    width: 6px; height: 6px; background: var(--green); border-radius: 50%;
+    box-shadow: 0 0 10px var(--green); animation: pulseDot 2s ease-in-out infinite;
 }
 @keyframes pulseDot {
     0%, 100% { opacity: 1; }
@@ -281,981 +182,517 @@ header {
 }
 
 .hero h1 {
-    font-size: clamp(40px, 6.5vw, 76px);
-    font-weight: 800;
-    line-height: 1.02;
-    letter-spacing: -2.5px;
+    font-size: clamp(38px, 6.5vw, 72px);
+    font-weight: 800; line-height: 1.04; letter-spacing: -2.5px;
     margin-bottom: 22px;
     background: linear-gradient(180deg, #fff 0%, #a0a0b0 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .hero h1 .accent {
     background: var(--grad-red);
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 .hero p {
-    font-size: clamp(15px, 1.7vw, 18px);
-    color: var(--text-dim);
-    max-width: 620px;
-    margin: 0 auto 38px;
-    line-height: 1.75;
+    font-size: clamp(15px, 1.7vw, 18px); color: var(--text-dim);
+    max-width: 640px; margin: 0 auto 38px; line-height: 1.75;
 }
 
-.hero-actions {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
 .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 30px;
-    border-radius: 13px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 30px; border-radius: 13px;
+    font-family: inherit; font-size: 15px; font-weight: 700;
+    text-decoration: none; cursor: pointer; border: none;
     transition: all .28s cubic-bezier(.4, 0, .2, 1);
 }
 .btn svg { width: 17px; height: 17px; }
-
 .btn-primary {
-    background: var(--grad-red);
-    color: white;
+    background: var(--grad-red); color: white;
     box-shadow: 0 12px 36px -12px var(--red-glow);
 }
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 46px -12px var(--red-glow);
-}
-
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 46px -12px var(--red-glow); }
 .btn-secondary {
-    background: var(--surface);
-    color: var(--text);
+    background: var(--surface); color: var(--text);
     border: 1px solid var(--border);
 }
-.btn-secondary:hover {
-    background: var(--surface-2);
-    border-color: var(--border-hi);
-    transform: translateY(-2px);
-}
+.btn-secondary:hover { background: var(--surface-2); border-color: var(--border-hi); transform: translateY(-2px); }
 
+/* ================= TRUST BAR ================= */
 .trust-bar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 34px 0;
-    margin: 20px 0 60px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; padding: 34px 0; margin: 0 0 20px;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 }
-
-.trust-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0 8px;
-}
+.trust-item { display: flex; align-items: center; gap: 12px; padding: 0 8px; }
 .trust-icon {
-    width: 42px; height: 42px;
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    width: 42px; height: 42px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .trust-icon.green  { background: rgba(22, 199, 132, .12); color: var(--green); }
 .trust-icon.blue   { background: rgba(61, 139, 255, .12); color: var(--blue); }
 .trust-icon.red    { background: rgba(255, 51, 85, .12); color: var(--red); }
 .trust-icon.purple { background: rgba(168, 85, 247, .12); color: var(--purple); }
 .trust-icon svg { width: 20px; height: 20px; }
+.trust-text .top { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.2; }
+.trust-text .bot { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
 
-.trust-text .top {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.2;
-}
-.trust-text .bot {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-top: 2px;
-}
-
-.section { padding: 64px 0; }
-.section-head {
-    text-align: center;
-    margin-bottom: 52px;
-}
+/* ================= SECTIONS ================= */
+.section { padding: 56px 0; }
+.section-head { text-align: center; margin-bottom: 44px; }
 .section-head .eyebrow {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    color: var(--red);
-    text-transform: uppercase;
-    margin-bottom: 14px;
+    display: inline-block; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; color: var(--red);
+    text-transform: uppercase; margin-bottom: 14px;
 }
 .section-head h2 {
-    font-size: clamp(30px, 3.8vw, 44px);
-    font-weight: 800;
-    letter-spacing: -1.2px;
-    line-height: 1.15;
-    margin-bottom: 14px;
+    font-size: clamp(28px, 3.8vw, 42px);
+    font-weight: 800; letter-spacing: -1.2px; line-height: 1.15; margin-bottom: 14px;
 }
-.section-head p {
-    color: var(--text-dim);
-    max-width: 580px;
-    margin: 0 auto;
-    font-size: 16px;
-}
+.section-head p { color: var(--text-dim); max-width: 620px; margin: 0 auto; font-size: 16px; }
 
-.versions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
+/* ================= INTRO CARDS (HOME) ================= */
+.intro-card {
+    position: relative; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 34px; overflow: hidden; transition: all .3s cubic-bezier(.4, 0, .2, 1);
+    margin-bottom: 26px;
 }
+.intro-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--grad-red);
+}
+.intro-card.ghost::before { background: var(--grad-green); }
+.intro-card:hover { border-color: var(--border-hi); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
 
-.version-card {
-    position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 34px;
-    overflow: hidden;
-    transition: all .3s cubic-bezier(.4, 0, .2, 1);
-}
-.version-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--grad-red);
-    opacity: 0;
-    transition: opacity .3s;
-}
-.version-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--border-hi);
-    box-shadow: var(--shadow-lg);
-}
-.version-card:hover::before { opacity: 1; }
-
-.version-card.ac::before { background: var(--grad-blue); }
-
-.version-card.recommended {
-    border-color: rgba(255, 51, 85, .35);
-    background: linear-gradient(180deg, rgba(255, 51, 85, .04) 0%, var(--surface) 100%);
-}
-.version-card.ac.recommended {
-    border-color: rgba(61, 139, 255, .35);
-    background: linear-gradient(180deg, rgba(61, 139, 255, .04) 0%, var(--surface) 100%);
-}
-
-.rec-badge {
-    position: absolute;
-    top: 22px; right: 22px;
-    padding: 5px 12px;
-    border-radius: 999px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    background: var(--grad-red);
-    color: white;
-    box-shadow: 0 8px 20px -6px var(--red-glow);
-}
-.version-card.ac .rec-badge {
-    background: var(--grad-blue);
-    box-shadow: 0 8px 20px -6px var(--blue-glow);
-}
+.intro-top { display: flex; align-items: center; gap: 18px; margin-bottom: 26px; flex-wrap: wrap; }
+.intro-top h3 { font-size: 24px; font-weight: 800; letter-spacing: -.7px; }
+.intro-top .sub { font-size: 13.5px; color: var(--text-dim); margin-top: 3px; }
 
 .version-icon {
-    width: 54px; height: 54px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    background: var(--grad-red);
-    box-shadow: 0 12px 28px -10px var(--red-glow);
-}
-.version-card.ac .version-icon {
-    background: var(--grad-blue);
-    box-shadow: 0 12px 28px -10px var(--blue-glow);
+    width: 54px; height: 54px; border-radius: 15px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    background: var(--grad-red); box-shadow: 0 12px 28px -10px var(--red-glow);
 }
 .version-icon svg { width: 26px; height: 26px; fill: white; }
-
-.version-card h3 {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -.6px;
-    margin-bottom: 8px;
+.intro-card.ghost .version-icon,
+.version-card.ghost .version-icon {
+    background: var(--grad-green); box-shadow: 0 12px 28px -10px var(--green-glow);
+}
+.version-card.ac .version-icon {
+    background: var(--grad-blue); box-shadow: 0 12px 28px -10px var(--blue-glow);
 }
 
-.version-card .sub {
-    font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 26px;
-    min-height: 20px;
-}
-
-.feature-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 30px;
-}
+/* feature list */
+.feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.feature-list.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
 .feature-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 11px;
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.5;
+    display: flex; align-items: flex-start; gap: 11px;
+    font-size: 14px; color: var(--text); line-height: 1.5;
 }
 .feature-list .check {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: rgba(22, 199, 132, .15);
-    color: var(--green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(22, 199, 132, .15); color: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
 }
 .feature-list .check svg { width: 11px; height: 11px; }
 .feature-list .x {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: rgba(255, 51, 85, .15);
-    color: var(--red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(255, 51, 85, .15); color: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
 }
 .feature-list .x svg { width: 11px; height: 11px; }
 
-.btn-download {
-    width: 100%;
-    padding: 16px 24px;
-    border-radius: 14px;
+/* price row */
+.price-row { display: flex; align-items: baseline; gap: 12px; }
+.price-now {
+    font-size: 40px; font-weight: 900; letter-spacing: -1.5px; line-height: 1;
     background: var(--grad-red);
-    color: white;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .2px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 11px;
-    transition: all .3s cubic-bezier(.4, 0, .2, 1);
-    text-decoration: none;
-    box-shadow:
-        0 12px 30px -12px var(--red-glow),
-        inset 0 1px 0 rgba(255,255,255,.2);
-    position: relative;
-    overflow: hidden;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.btn-download::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.25) 50%, transparent 100%);
-    transition: left .7s cubic-bezier(.4, 0, .2, 1);
-    pointer-events: none;
+.intro-card.ghost .price-now,
+.version-card.ghost .price-now {
+    background: var(--grad-green);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.btn-download:hover::before { left: 100%; }
-.btn-download svg {
-    width: 18px !important;
-    height: 18px !important;
-    flex-shrink: 0;
-    display: inline-block;
-    vertical-align: middle;
-    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
-}
-.btn-download:hover svg { transform: translateY(2px); }
-.btn-download:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 20px 46px -12px var(--red-glow),
-        inset 0 1px 0 rgba(255,255,255,.3);
-}
-.btn-download:active {
-    transform: translateY(-1px) scale(.99);
-}
-.version-card.ac .btn-download {
+.version-card.ac .price-now {
     background: var(--grad-blue);
-    box-shadow:
-        0 12px 30px -12px var(--blue-glow),
-        inset 0 1px 0 rgba(255,255,255,.2);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.version-card.ac .btn-download:hover {
-    box-shadow:
-        0 20px 46px -12px var(--blue-glow),
-        inset 0 1px 0 rgba(255,255,255,.3);
+.price-old { font-size: 16px; color: var(--text-mute); text-decoration: line-through; font-weight: 600; }
+
+.intro-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--border);
 }
 
-.download-meta {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    margin-top: 16px;
-    font-size: 11px;
-    color: var(--text-mute);
-    font-weight: 500;
-    letter-spacing: .3px;
+/* ================= BUY BUTTON ================= */
+.btn-buy {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px 30px; border-radius: 13px;
+    background: var(--grad-red); color: white;
+    font-family: inherit; font-size: 14px; font-weight: 800;
+    letter-spacing: .4px; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: all .3s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: 0 12px 30px -12px var(--red-glow), inset 0 1px 0 rgba(255,255,255,.2);
+    position: relative; overflow: hidden;
+}
+.btn-buy svg { width: 17px; height: 17px; }
+.btn-buy::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.25) 50%, transparent 100%);
+    transition: left .7s cubic-bezier(.4, 0, .2, 1); pointer-events: none;
+}
+.btn-buy:hover::before { left: 100%; }
+.btn-buy:hover { transform: translateY(-3px); box-shadow: 0 20px 46px -12px var(--red-glow), inset 0 1px 0 rgba(255,255,255,.3); }
+.btn-buy:active { transform: translateY(-1px) scale(.99); }
+.btn-buy.full { width: 100%; }
+
+.intro-card.ghost .btn-buy,
+.version-card.ghost .btn-buy {
+    background: var(--grad-green);
+    box-shadow: 0 12px 30px -12px var(--green-glow), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.intro-card.ghost .btn-buy:hover,
+.version-card.ghost .btn-buy:hover {
+    box-shadow: 0 20px 46px -12px var(--green-glow), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.version-card.ac .btn-buy {
+    background: var(--grad-blue);
+    box-shadow: 0 12px 30px -12px var(--blue-glow), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.version-card.ac .btn-buy:hover {
+    box-shadow: 0 20px 46px -12px var(--blue-glow), inset 0 1px 0 rgba(255,255,255,.3);
 }
 
-.sha-box {
-    margin-top: 18px;
-    padding: 12px 14px;
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-family: 'Consolas', monospace;
-    font-size: 10.5px;
-    color: var(--text-mute);
-    word-break: break-all;
-    line-height: 1.5;
-    position: relative;
-    cursor: pointer;
-    transition: all .2s;
+/* Nút Tải App */
+.btn-download {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 15px 20px; border-radius: 13px;
+    background: var(--surface-2); color: var(--text);
+    border: 1px solid var(--border); font-family: inherit; font-size: 14px; font-weight: 800;
+    letter-spacing: .4px; text-transform: uppercase; text-decoration: none;
+    transition: all .3s; cursor: pointer; flex: 1;
 }
-.sha-box:hover {
-    border-color: var(--border-hi);
-    color: var(--text-dim);
+.btn-download:hover {
+    background: var(--surface-3); border-color: var(--border-hi); transform: translateY(-2px);
 }
-.sha-box .sha-label {
-    display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-}
-.sha-box .copy-hint {
-    position: absolute;
-    top: 50%; right: 12px;
-    transform: translateY(-50%);
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    color: var(--text-mute);
-    opacity: 0;
-    transition: opacity .2s;
-}
-.sha-box:hover .copy-hint { opacity: 1; }
+.btn-download svg { width: 17px; height: 17px; }
 
-/* ============================================================
-   TESTIMONIALS
-   ============================================================ */
-.testimonials {
+
+/* ================= VERSION / PRODUCT CARDS ================= */
+.versions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 36px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
 }
+.version-card {
+    position: relative; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 34px; overflow: hidden; transition: all .3s cubic-bezier(.4, 0, .2, 1);
+    display: flex; flex-direction: column;
+}
+.version-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--grad-red); opacity: 0; transition: opacity .3s;
+}
+.version-card:hover { transform: translateY(-5px); border-color: var(--border-hi); box-shadow: var(--shadow-lg); }
+.version-card:hover::before { opacity: 1; }
+.version-card.ghost::before { background: var(--grad-green); }
+.version-card.ac::before    { background: var(--grad-blue); }
 
-.testimonial {
-    background: var(--surface);
-    border: 1px solid var(--border);
+.rec-badge {
+    position: absolute; top: 22px; right: 22px;
+    padding: 5px 12px; border-radius: 999px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    background: var(--grad-red); color: white;
+    box-shadow: 0 8px 20px -6px var(--red-glow);
+}
+.version-card.ghost .rec-badge { background: var(--grad-green); box-shadow: 0 8px 20px -6px var(--green-glow); color: #001a10; }
+.version-card.ac .rec-badge    { background: var(--grad-blue);  box-shadow: 0 8px 20px -6px var(--blue-glow); }
+
+.version-card .version-icon { margin-bottom: 22px; }
+.version-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -.6px; margin-bottom: 8px; }
+.version-card .sub { font-size: 13px; color: var(--text-dim); margin-bottom: 22px; min-height: 20px; }
+.version-card .price-row { margin-bottom: 24px; }
+.version-card .feature-list { flex: 1; }
+
+.action-row { display: flex; gap: 10px; margin-top: 10px; }
+
+.key-note {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(245, 197, 66, .07);
+    border: 1px solid rgba(245, 197, 66, .3);
     border-radius: var(--radius-sm);
-    padding: 26px;
-    position: relative;
-    transition: all .28s cubic-bezier(.4, 0, .2, 1);
+    padding: 16px 20px; margin-top: 26px;
+    font-size: 13.5px; color: var(--text-dim); line-height: 1.6;
 }
-.testimonial:hover {
-    transform: translateY(-4px);
-    border-color: var(--border-hi);
-    box-shadow: var(--shadow-md);
-}
+.key-note svg { width: 20px; height: 20px; color: var(--yellow); flex-shrink: 0; }
+.key-note strong { color: var(--yellow); }
 
+/* combo */
+.combo-box {
+    margin-top: 44px; text-align: center;
+    background: linear-gradient(180deg, rgba(255, 51, 85, .05) 0%, var(--surface) 100%);
+    border: 1px solid rgba(255, 51, 85, .3);
+    border-radius: var(--radius); padding: 44px 30px;
+    position: relative; overflow: hidden;
+}
+.combo-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--grad-red);
+}
+.combo-box .combo-price {
+    font-size: 54px; font-weight: 900; letter-spacing: -2px; line-height: 1;
+    margin: 18px 0 8px;
+    background: var(--grad-red);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.combo-box .combo-old { font-size: 16px; color: var(--text-mute); text-decoration: line-through; font-weight: 600; margin-left: 10px; }
+.combo-box .combo-note { font-size: 13px; color: var(--text-dim); margin-bottom: 26px; }
+
+/* ================= PAYMENT ================= */
+.payment-wrap {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px; align-items: stretch;
+}
+.qr-card, .info-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 30px;
+}
+.qr-card {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; gap: 14px;
+}
+.qr-card h3 {
+    font-size: 16px; font-weight: 800; color: var(--red);
+    text-transform: uppercase; letter-spacing: 1.5px;
+}
+.qr-card .qr-sub { font-size: 13px; color: var(--text-dim); }
+.qr-image {
+    width: 100%; max-width: 260px; border-radius: 14px;
+    border: 4px solid #fff; background: #fff;
+    box-shadow: 0 0 40px var(--red-glow);
+    cursor: zoom-in; transition: transform .25s;
+}
+.qr-image:hover { transform: scale(1.04); }
+
+.info-card h3 {
+    font-size: 16px; font-weight: 800; color: var(--green);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;
+}
+.bank-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; padding: 13px 0;
+    border-bottom: 1px dashed var(--border); font-size: 14px;
+}
+.bank-row:last-child { border-bottom: none; }
+.bank-row .label { color: var(--text-dim); font-size: 13px; flex-shrink: 0; }
+.bank-row .value {
+    color: var(--red); font-weight: 800;
+    font-family: Consolas, 'Monaco', monospace; font-size: 14.5px;
+    text-align: right; word-break: break-word;
+}
+.bank-row .value.green { color: var(--green); }
+.bank-row .value.yellow { color: var(--yellow); }
+.bank-row .value.cyan { color: var(--blue-hi); }
+
+.copy-btn {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--red); border-radius: 8px;
+    padding: 5px 11px; font-size: 11px; font-weight: 700;
+    cursor: pointer; margin-left: 8px; transition: all .2s; font-family: inherit;
+    white-space: nowrap;
+}
+.copy-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.copy-btn.copied { background: var(--green); color: #001a10; border-color: var(--green); }
+
+.note-box {
+    background: rgba(245, 197, 66, .08);
+    border: 1px solid rgba(245, 197, 66, .3);
+    border-radius: 12px; padding: 15px 17px; margin-top: 18px;
+    font-size: 12.5px; color: var(--text-dim); line-height: 1.75;
+}
+.note-box strong { color: var(--yellow); }
+
+/* ================= STEPS ================= */
+.steps-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+}
+.step-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 24px 22px; transition: all .25s;
+}
+.step-box:hover { transform: translateY(-3px); border-color: var(--border-hi); background: var(--surface-2); }
+.step-num {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--grad-red); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 900; margin-bottom: 14px;
+    box-shadow: 0 8px 20px -8px var(--red-glow);
+}
+.step-box h3 { font-size: 14.5px; font-weight: 800; margin-bottom: 5px; }
+.step-box p { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+
+/* ================= TESTIMONIALS ================= */
+.testimonials {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 20px;
+}
+.testimonial {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 26px;
+    position: relative; transition: all .28s cubic-bezier(.4, 0, .2, 1);
+}
+.testimonial:hover { transform: translateY(-4px); border-color: var(--border-hi); box-shadow: var(--shadow-md); }
 .testimonial .quote-mark {
-    position: absolute;
-    top: 18px;
-    right: 22px;
-    font-size: 56px;
-    font-weight: 800;
-    color: var(--red);
-    opacity: .12;
-    line-height: .8;
+    position: absolute; top: 18px; right: 22px;
+    font-size: 56px; font-weight: 800; color: var(--red);
+    opacity: .12; line-height: .8; pointer-events: none;
     font-family: Georgia, 'Times New Roman', serif;
-    pointer-events: none;
 }
-
-.testimonial-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-}
-
+.testimonial-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .testimonial-avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 15px;
-    color: white;
-    flex-shrink: 0;
-    letter-spacing: -.5px;
-    box-shadow: 0 6px 16px -4px rgba(0,0,0,.4);
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; color: white; flex-shrink: 0;
+    letter-spacing: -.5px; box-shadow: 0 6px 16px -4px rgba(0,0,0,.4);
 }
-
 .testimonial-info .name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    line-height: 1.2;
+    font-size: 14px; font-weight: 700; color: var(--text);
+    display: flex; align-items: center; gap: 6px; line-height: 1.2;
 }
-.testimonial-info .role {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-top: 3px;
-}
-
+.testimonial-info .role { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
 .verified-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: var(--blue);
-    flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 15px; height: 15px; border-radius: 50%; background: var(--blue); flex-shrink: 0;
 }
-.verified-badge svg {
-    width: 9px;
-    height: 9px;
-    fill: white;
-}
-
-.testimonial-stars {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 12px;
-}
-.testimonial-stars svg {
-    width: 15px;
-    height: 15px;
-    fill: #f5c542;
-}
-
-.testimonial-text {
-    font-size: 13.5px;
-    color: var(--text);
-    line-height: 1.7;
-    opacity: .9;
-}
-.testimonial-text strong {
-    color: var(--red);
-    font-weight: 700;
-}
+.verified-badge svg { width: 9px; height: 9px; fill: white; }
+.testimonial-stars { display: flex; gap: 3px; margin-bottom: 12px; }
+.testimonial-stars svg { width: 15px; height: 15px; fill: #f5c542; }
+.testimonial-text { font-size: 13.5px; color: var(--text); line-height: 1.7; opacity: .92; }
+.testimonial-text strong { color: var(--red); font-weight: 700; }
 
 .testimonial-stats {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin-top: 40px;
-    padding: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    margin-top: 40px; padding: 26px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
 }
-.testimonial-stat {
-    text-align: center;
-}
+.testimonial-stat { text-align: center; }
 .testimonial-stat .num {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -1px;
+    font-size: 28px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 4px;
     background: var(--grad-red);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-.testimonial-stat .lbl {
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 500;
-    letter-spacing: .3px;
-}
-
-.safety-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin: 40px 0;
-}
-
-.safety-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 28px;
-    border-radius: var(--radius);
-    position: relative;
-    overflow: hidden;
-}
-
-.safety-card.green {
-    background: linear-gradient(135deg, rgba(22, 199, 132, .08) 0%, rgba(22, 199, 132, .015) 100%);
-    border: 1px solid rgba(22, 199, 132, .25);
-}
-.safety-card.yellow {
-    background: linear-gradient(135deg, rgba(245, 197, 66, .07) 0%, rgba(245, 197, 66, .015) 100%);
-    border: 1px solid rgba(245, 197, 66, .25);
-}
-
-.safety-card .s-icon {
-    width: 60px; height: 60px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-.safety-card.green .s-icon {
-    background: rgba(22, 199, 132, .15);
-    color: var(--green);
-}
-.safety-card.yellow .s-icon {
-    background: rgba(245, 197, 66, .15);
-    color: var(--yellow);
-}
-.safety-card .s-icon svg { width: 28px; height: 28px; }
-
-.safety-card h3 {
-    font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: -.3px;
-}
-.safety-card.green h3 { color: var(--green); }
-.safety-card.yellow h3 { color: var(--yellow); }
-
-.safety-card p {
-    font-size: 14px;
-    color: var(--text-dim);
-    line-height: 1.75;
-}
-.safety-card p + p { margin-top: 10px; }
-.safety-card strong { color: var(--text); font-weight: 700; }
-
-.safety-card ul {
-    list-style: none;
-    margin: 12px 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.safety-card ul li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--text-dim);
-    line-height: 1.6;
-}
-.safety-card ul li::before {
-    content: '•';
-    color: var(--green);
-    font-weight: 800;
-    flex-shrink: 0;
-    line-height: 1.6;
-}
-.safety-card.yellow ul li::before { color: var(--yellow); }
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 36px;
-}
-
-.feature-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 26px;
-    transition: all .28s;
-}
-.feature-box:hover {
-    background: var(--surface-2);
-    transform: translateY(-4px);
-    border-color: var(--border-hi);
-    box-shadow: var(--shadow-md);
-}
-.feature-box .f-icon {
-    width: 42px; height: 42px;
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 18px;
-    background: rgba(255, 51, 85, .1);
-    color: var(--red);
-}
-.feature-box .f-icon svg { width: 20px; height: 20px; }
-.feature-box h4 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 6px;
-}
-.feature-box p {
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.65;
-}
-
-.contact-hero {
-    text-align: center;
-    padding: 64px 0 40px;
-}
-.contact-hero h1 {
-    font-size: clamp(36px, 5.2vw, 62px);
-    font-weight: 800;
-    letter-spacing: -1.8px;
-    line-height: 1.08;
-    margin-bottom: 20px;
-    background: linear-gradient(180deg, #fff 0%, #a0a0b0 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.contact-hero p {
-    font-size: 16px;
-    color: var(--text-dim);
-    max-width: 540px;
-    margin: 0 auto 22px;
-    line-height: 1.7;
-}
+.testimonial-stat .lbl { font-size: 12px; color: var(--text-dim); font-weight: 500; letter-spacing: .3px; }
 
-.vip-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: var(--grad-purple);
-    color: white;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    box-shadow: 0 12px 30px -10px rgba(168, 85, 247, .6);
-    margin-bottom: 26px;
-}
-.vip-badge svg { width: 14px; height: 14px; }
-
-.pricing-box {
-    max-width: 640px;
-    margin: 44px auto;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 44px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-.pricing-box::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--grad-purple);
-}
-.pricing-box .pricing-label {
-    font-size: 13px;
-    color: var(--text-dim);
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-.pricing-box .price {
-    font-size: 54px;
-    font-weight: 800;
-    letter-spacing: -2px;
-    background: var(--grad-purple);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin: 18px 0 8px;
-}
-.pricing-box .price-note {
-    font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 32px;
-}
-.pricing-box ul {
-    list-style: none;
-    text-align: left;
-    display: inline-block;
-    margin-bottom: 30px;
-}
-.pricing-box li {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    font-size: 14px;
-    padding: 8px 0;
-    color: var(--text);
-}
-.pricing-box li svg {
-    width: 16px; height: 16px;
-    color: var(--green);
-    flex-shrink: 0;
-}
-
-/* CSS CHO MÃ QR TRONG PRICING BOX */
-.qr-container {
-    margin: 24px auto 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-.qr-image {
-    width: 100%;
-    max-width: 240px;
-    border-radius: 12px;
-    border: 4px solid #fff;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    cursor: zoom-in;
-    transition: transform 0.2s;
-}
-.qr-image:hover {
-    transform: scale(1.05);
-}
-.qr-text {
-    font-size: 13px;
-    color: var(--text-dim);
-    font-weight: 600;
-}
-
+/* ================= CONTACT ================= */
 .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    margin: 52px 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px; margin: 44px 0;
 }
-
 .contact-card {
-    position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 38px 34px;
-    text-align: center;
-    text-decoration: none;
-    color: var(--text);
-    overflow: hidden;
-    transition: all .3s cubic-bezier(.4, 0, .2, 1);
+    position: relative; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 38px 34px; text-align: center; text-decoration: none; color: var(--text);
+    overflow: hidden; transition: all .3s cubic-bezier(.4, 0, .2, 1);
 }
-.contact-card:hover {
-    transform: translateY(-6px);
-    border-color: transparent;
-    box-shadow: var(--shadow-lg);
-}
-.contact-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity .3s;
-    z-index: 0;
-}
-.contact-card.zalo::before {
-    background: linear-gradient(135deg, rgba(0, 104, 255, .12) 0%, rgba(0, 104, 255, .02) 100%);
-}
-.contact-card.fb::before {
-    background: linear-gradient(135deg, rgba(24, 119, 242, .12) 0%, rgba(24, 119, 242, .02) 100%);
-}
+.contact-card:hover { transform: translateY(-6px); border-color: transparent; box-shadow: var(--shadow-lg); }
+.contact-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .3s; z-index: 0; }
+.contact-card.zalo::before { background: linear-gradient(135deg, rgba(0, 104, 255, .12) 0%, rgba(0, 104, 255, .02) 100%); }
+.contact-card.fb::before   { background: linear-gradient(135deg, rgba(24, 119, 242, .12) 0%, rgba(24, 119, 242, .02) 100%); }
 .contact-card:hover::before { opacity: 1; }
 .contact-card > * { position: relative; z-index: 1; }
 
 .contact-card .c-icon {
-    width: 72px; height: 72px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    transition: transform .3s;
+    width: 72px; height: 72px; border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px; transition: transform .3s;
 }
 .contact-card:hover .c-icon { transform: scale(1.08); }
-
-.contact-card.zalo .c-icon {
-    background: linear-gradient(135deg, #0068ff 0%, #3b8eff 100%);
-    box-shadow: 0 14px 36px -10px rgba(0, 104, 255, .6);
-}
-.contact-card.fb .c-icon {
-    background: linear-gradient(135deg, #1877f2 0%, #4a9eff 100%);
-    box-shadow: 0 14px 36px -10px rgba(24, 119, 242, .6);
-}
+.contact-card.zalo .c-icon { background: linear-gradient(135deg, #0068ff 0%, #3b8eff 100%); box-shadow: 0 14px 36px -10px rgba(0, 104, 255, .6); }
+.contact-card.fb .c-icon   { background: linear-gradient(135deg, #1877f2 0%, #4a9eff 100%); box-shadow: 0 14px 36px -10px rgba(24, 119, 242, .6); }
 .contact-card .c-icon svg { width: 34px; height: 34px; fill: white; }
 
-.contact-card h3 {
-    font-size: 21px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: -.4px;
-}
-.contact-card .c-desc {
-    font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 22px;
-    line-height: 1.65;
-}
+.contact-card h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; letter-spacing: -.4px; }
+.contact-card .c-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 22px; line-height: 1.65; }
 .contact-card .c-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 11px 22px;
-    border-radius: 11px;
-    transition: all .2s;
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 700; padding: 11px 22px;
+    border-radius: 11px; transition: all .2s;
 }
-.contact-card.zalo .c-cta {
-    background: rgba(0, 104, 255, .15);
-    color: #4a9eff;
-}
-.contact-card.fb .c-cta {
-    background: rgba(24, 119, 242, .15);
-    color: #4a9eff;
-}
+.contact-card.zalo .c-cta { background: rgba(0, 104, 255, .15); color: #4a9eff; }
+.contact-card.fb .c-cta   { background: rgba(24, 119, 242, .15); color: #4a9eff; }
 .contact-card:hover .c-cta { gap: 11px; }
 .contact-card .c-cta svg { width: 14px; height: 14px; }
 
-.faq-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
+/* ================= FAQ ================= */
+.faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 .faq-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 24px;
-    transition: all .25s;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 24px; transition: all .25s;
 }
-.faq-box:hover {
-    background: var(--surface-2);
-    border-color: var(--border-hi);
-}
-.faq-box h4 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.faq-box p {
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.7;
-}
+.faq-box:hover { background: var(--surface-2); border-color: var(--border-hi); }
+.faq-box h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.faq-box p { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
 .faq-box strong { color: var(--text); }
 
-footer {
-    border-top: 1px solid var(--border);
-    padding: 36px 0;
-    margin-top: 90px;
-    text-align: center;
-}
-footer p {
-    font-size: 13px;
-    color: var(--text-mute);
-}
+/* ================= FOOTER + TOAST ================= */
+footer { border-top: 1px solid var(--border); padding: 36px 0; margin-top: 60px; text-align: center; }
+footer p { font-size: 13px; color: var(--text-mute); }
 footer strong { color: var(--text-dim); }
 
+#toast {
+    position: fixed; bottom: 32px; left: 50%;
+    transform: translateX(-50%) translateY(140px);
+    background: var(--surface-2); border: 1px solid var(--border-hi);
+    border-radius: 13px; padding: 15px 24px;
+    display: flex; align-items: center; gap: 13px;
+    font-size: 14px; font-weight: 600; box-shadow: var(--shadow-lg);
+    z-index: 9999; opacity: 0; pointer-events: none;
+    transition: all .38s cubic-bezier(.4, 0, .2, 1);
+}
+#toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+#toast .t-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(22, 199, 132, .15); color: var(--green);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+#toast .t-icon svg { width: 14px; height: 14px; }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+    .payment-wrap { grid-template-columns: 1fr; }
+}
 @media (max-width: 760px) {
     .header-actions .btn-small:not(.primary) { display: none; }
     .versions-grid { grid-template-columns: 1fr; }
-    .safety-card { flex-direction: column; text-align: center; gap: 16px; }
-    .safety-card .s-icon { margin: 0 auto; }
-    .tabs { flex-direction: column; width: 100%; }
-    .tab { justify-content: center; }
+    .feature-list.two-col { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
-    .pricing-box { padding: 34px 24px; }
-    .hero { padding: 44px 0 64px; }
+    .hero { padding: 44px 0 56px; }
     .wrapper { padding: 0 18px; }
+    .intro-card, .version-card { padding: 26px 22px; }
+    .intro-bottom { flex-direction: column; align-items: flex-start; }
+    .btn-buy, .btn-download { width: 100%; }
+    .action-row { flex-direction: column; }
     .testimonial-stats { gap: 24px; }
     .testimonial-stat .num { font-size: 22px; }
+    .tab { padding: 10px 16px; font-size: 13px; }
+    .combo-box { padding: 34px 22px; }
+    .combo-box .combo-price { font-size: 42px; }
 }
-
-#toast {
-    position: fixed;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%) translateY(140px);
-    background: var(--surface-2);
-    border: 1px solid var(--border-hi);
-    border-radius: 13px;
-    padding: 15px 24px;
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: var(--shadow-lg);
-    z-index: 9999;
-    opacity: 0;
-    transition: all .38s cubic-bezier(.4, 0, .2, 1);
-    pointer-events: none;
-}
-#toast.show {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-}
-#toast .t-icon {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: rgba(22, 199, 132, .15);
-    color: var(--green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-#toast .t-icon svg { width: 14px; height: 14px; }
 </style>
 </head>
 <body>
@@ -1263,20 +700,21 @@ footer strong { color: var(--text-dim); }
 <div class="bg-fx"></div>
 <div class="bg-grid"></div>
 
+<!-- ================= HEADER ================= -->
 <header>
     <div class="wrapper">
         <div class="header-inner">
-            <a href="#" class="logo">
+            <a href="#" class="logo" onclick="switchTab('home');return false;">
                 <div class="logo-icon">
                     <svg viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
                 </div>
                 <span>Gaming Optimizer</span>
-                <span class="badge-version">v5.0</span>
+                <span class="badge-version">v5.2</span>
             </a>
             <div class="header-actions">
-                <a href="#about" class="btn-small" onclick="switchTab('about')">Giới thiệu</a>
-                <a href="#contact" class="btn-small primary" onclick="switchTab('contact')">
-                    <svg style="width:13px;height:13px;vertical-align:-2px;margin-right:4px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <a href="#" class="btn-small" onclick="switchTab('products');return false;">Sản phẩm</a>
+                <a href="#" class="btn-small primary" onclick="switchTab('payment');return false;">
+                    <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     Mua VIP
                 </a>
             </div>
@@ -1284,39 +722,51 @@ footer strong { color: var(--text-dim); }
     </div>
 </header>
 
+<!-- ================= TABS ================= -->
 <div class="wrapper">
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tab active" data-tab="about" onclick="switchTab('about')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-                Giới thiệu
+            <button class="tab active" data-tab="home" onclick="switchTab('home')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+                Trang chủ
             </button>
-            <button class="tab" data-tab="contact" onclick="switchTab('contact')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                Liên hệ &amp; Mua VIP
+            <button class="tab" data-tab="products" onclick="switchTab('products')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+                Sản phẩm & Tải xuống
+            </button>
+            <button class="tab" data-tab="payment" onclick="switchTab('payment')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                Thanh toán
+            </button>
+            <button class="tab" data-tab="reviews" onclick="switchTab('reviews')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Đánh giá
             </button>
         </div>
     </div>
 </div>
 
-<section id="tab-about" class="tab-panel active">
+<!-- ============================================================
+     TAB: HOME
+     ============================================================ -->
+<section id="tab-home" class="tab-panel active">
     <div class="wrapper">
 
         <div class="hero">
             <div class="hero-tag">
                 <span class="dot"></span>
-                Phiên bản v5.0 · Cập nhật 2026
+                Phiên bản v5.2 · Bảo hành trọn đời
             </div>
-            <h1>Tối ưu Gaming<br><span class="accent">Đỉnh Cao Hiệu Năng</span></h1>
-            <p>Bộ công cụ tinh chỉnh Windows toàn diện dành riêng cho game thủ. Tăng FPS, giảm ping, tối ưu RAM và hệ thống chỉ với một cú click.</p>
+            <h1>Tối Ưu Gaming<br><span class="accent">Đỉnh Cao Hiệu Năng</span></h1>
+            <p>Bộ công cụ tinh chỉnh Windows + Bản Windows Ghost Spectre Superlite. Tăng FPS, giảm ping, giảm độ trễ — Bảo hành trọn đời, hỗ trợ 24/7.</p>
             <div class="hero-actions">
-                <a href="#download" class="btn btn-primary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Tải xuống ngay
+                <a href="#" class="btn btn-primary" onclick="switchTab('payment');return false;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    Mua ngay
                 </a>
-                <a href="#features" class="btn btn-secondary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-                    Tìm hiểu thêm
+                <a href="#" class="btn btn-secondary" onclick="switchTab('products');return false;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    Tải App
                 </a>
             </div>
         </div>
@@ -1342,7 +792,7 @@ footer strong { color: var(--text-dim); }
             </div>
             <div class="trust-item">
                 <div class="trust-icon red">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
                 </div>
                 <div class="trust-text">
                     <div class="top">Hỗ trợ 24/7</div>
@@ -1354,355 +804,105 @@ footer strong { color: var(--text-dim); }
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </div>
                 <div class="trust-text">
-                    <div class="top">Cập nhật liên tục</div>
-                    <div class="bot">Miễn phí trọn đời</div>
+                    <div class="top">Nhận key 1-5 phút</div>
+                    <div class="bot">Gửi bill qua Zalo là có key</div>
                 </div>
             </div>
         </div>
 
-        <div id="download" class="section">
+        <!-- GIỚI THIỆU APP -->
+        <div class="section">
             <div class="section-head">
-                <span class="eyebrow">Tải xuống</span>
-                <h2>Chọn phiên bản phù hợp</h2>
-                <p>Hai phiên bản được thiết kế cho hai nhu cầu khác nhau. Đọc kỹ để chọn đúng bản cho mình.</p>
+                <span class="eyebrow">Sản phẩm chính</span>
+                <h2>Hai giải pháp — Một mục tiêu</h2>
+                <p>PC mượt hơn, FPS cao hơn, ping thấp hơn. Mua 1 lần, dùng vĩnh viễn.</p>
             </div>
 
-            <div class="versions-grid">
-                <!-- MAX VERSION -->
-                <div class="version-card recommended">
-                    <span class="rec-badge">Hiệu năng tối đa</span>
+            <!-- App -->
+            <div class="intro-card">
+                <div class="intro-top">
                     <div class="version-icon">
                         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
                     </div>
-                    <h3>Gaming Optimizer MAX</h3>
-                    <p class="sub">Bản tối ưu cực hạn — dành cho game thủ hardcore</p>
-
-                    <ul class="feature-list">
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tắt toàn bộ dịch vụ bloatware</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tắt Windows Defender &amp; HVCI</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tắt Prefetch + Superfetch</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Ultimate Power Plan + CPU 100%</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>MSI Mode + Network Boost</li>
-                        <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Không chơi được game có Vanguard</li>
-                    </ul>
-
-                    <a href="/thank-you.html?app=max" class="btn-download">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        Tải xuống MAX
-                    </a>
-                    <div class="download-meta">
-                        <span>Windows 10/11</span>
-                        <span>·</span>
-                        <span>64-bit</span>
-                        <span>·</span>
-                        <span>Portable</span>
-                    </div>
-
-                    <div class="sha-box" onclick="copySha(this, '0ec49b044905cb4d13075b035c7d858605d8ea50542f88513fdeab5f3fa807c5')">
-                        <span class="sha-label">SHA256 · MAX</span>
-                        <span class="sha-value">0ec49b044905cb4d13075b035c7d858605d8ea50542f88513fdeab5f3fa807c5</span>
-                        <span class="copy-hint">Click để copy</span>
+                    <div>
+                        <h3>Gaming Optimizer VIP</h3>
+                        <p class="sub">Tool tối ưu Windows 1-click — tăng FPS, giảm lag, an toàn tuyệt đối</p>
                     </div>
                 </div>
+                <ul class="feature-list two-col">
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tối ưu Windows 1-click tự động</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tăng FPS, giảm ping, giảm lag</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>2 phiên bản: MAX &amp; Anticheat Safe</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Backup + Restore đầy đủ</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>An toàn với Valorant, CS2, PUBG</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Bảo hành trọn đời, update miễn phí</li>
+                </ul>
+                <div class="intro-bottom">
+                    <div class="price-row">
+                        <span class="price-now">99.000đ</span>
+                        <span class="price-old">299.000đ</span>
+                    </div>
+                    <a href="#" class="btn-buy" onclick="switchTab('payment');return false;">
+                        Mua ngay
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
 
-                <!-- AC VERSION -->
-                <div class="version-card ac recommended">
-                    <span class="rec-badge">Anticheat Safe</span>
+            <!-- Ghost Spectre -->
+            <div class="intro-card ghost">
+                <div class="intro-top">
                     <div class="version-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M3 3h18v14H3zM8 21h8M12 17v4"/></svg>
                     </div>
-                    <h3>Gaming Optimizer AC</h3>
-                    <p class="sub">Bản an toàn — chơi được mọi game kể cả Vanguard</p>
-
-                    <ul class="feature-list">
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>An toàn với Vanguard / EAC / BattlEye</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Giữ nguyên Windows Defender</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tự động bật lại HVCI nếu bị tắt</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Ultimate Power Plan + CPU 100%</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>MSI Mode + Network Boost</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hiệu năng cao, ổn định 24/7</li>
-                    </ul>
-
-                    <a href="/thank-you.html?app=ac" class="btn-download">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        Tải xuống AC
+                    <div>
+                        <h3>Ghost Spectre 10 Pro Superlite</h3>
+                        <p class="sub">Windows siêu nhẹ — chỉ 1.3GB RAM, 11 process khi khởi động</p>
+                    </div>
+                </div>
+                <ul class="feature-list two-col">
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Siêu nhẹ: chỉ 1.3GB RAM, 11 process</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>FPS tăng vọt, không giật lag</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>God Mode + Ghost Toolbox tích hợp</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Đã lược bỏ toàn bộ bloatware</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hỗ trợ kích hoạt bản quyền số</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hỗ trợ cài đặt &amp; kích hoạt 24/7</li>
+                </ul>
+                <div class="intro-bottom">
+                    <div class="price-row">
+                        <span class="price-now">50.000đ</span>
+                        <span class="price-old">299.000đ</span>
+                    </div>
+                    <a href="#" class="btn-buy" onclick="switchTab('payment');return false;">
+                        Mua ngay
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
-                    <div class="download-meta">
-                        <span>Windows 10/11</span>
-                        <span>·</span>
-                        <span>64-bit</span>
-                        <span>·</span>
-                        <span>Portable</span>
-                    </div>
-
-                    <div class="sha-box" onclick="copySha(this, 'd0fe50c6de0b8e62ba0367dae723baa3fa5a0aeea760817732685e34e03a44b5')">
-                        <span class="sha-label">SHA256 · AC</span>
-                        <span class="sha-value">d0fe50c6de0b8e62ba0367dae723baa3fa5a0aeea760817732685e34e03a44b5</span>
-                        <span class="copy-hint">Click để copy</span>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================================
-             TESTIMONIALS
-             ============================================================ -->
-        <div class="section">
+        <!-- VÌ SAO CHỌN -->
+        <div class="section" style="padding-top:0;">
             <div class="section-head">
-                <span class="eyebrow">Đánh giá</span>
-                <h2>Khách hàng nói gì</h2>
-                <p>Hơn 500+ game thủ đã tin dùng Gaming Optimizer để nâng tầm trải nghiệm chơi game.</p>
+                <span class="eyebrow">Vì sao chọn chúng tôi</span>
+                <h2>Cam kết rõ ràng</h2>
             </div>
-
-            <div class="testimonials">
-
-                <!-- Review 1 -->
-                <div class="testimonial">
-                    <span class="quote-mark">"</span>
-                    <div class="testimonial-head">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #ff3355, #ff5577);">MT</div>
-                        <div class="testimonial-info">
-                            <div class="name">
-                                Nguyễn Minh Tuấn
-                                <span class="verified-badge">
-                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                </span>
-                            </div>
-                            <div class="role">CS2 Player · Rank Global Elite</div>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="testimonial-text">PC mình i5 9400F + GTX 1660, trước chơi CS2 được 120-140 FPS, sau khi dùng tool lên ổn định <strong>180-200 FPS</strong>. Aim mượt hơn hẳn, không còn giật khi vào smoke. Quá đáng tiền.</p>
+            <div class="faq-grid">
+                <div class="faq-box">
+                    <h4>💯 Bảo hành trọn đời</h4>
+                    <p>Kích hoạt 1 lần, dùng vĩnh viễn. Đổi máy hỗ trợ reset key miễn phí.</p>
                 </div>
-
-                <!-- Review 2 -->
-                <div class="testimonial">
-                    <span class="quote-mark">"</span>
-                    <div class="testimonial-head">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #a855f7, #c084fc);">HL</div>
-                        <div class="testimonial-info">
-                            <div class="name">
-                                Trần Hoàng Long
-                                <span class="verified-badge">
-                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                </span>
-                            </div>
-                            <div class="role">Valorant · Rank Immortal 3</div>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="testimonial-text">Mình chơi Valorant, ping hay nhảy 40-60ms làm whiff liên tục. Sau khi tối ưu mạng giờ ổn định <strong>25-30ms</strong>, headshot ảo diệu hơn hẳn. Không biết do tool hay do trình, nhưng cứ lên rank đã 😄</p>
+                <div class="faq-box">
+                    <h4>🔒 An toàn 100%</h4>
+                    <p>Không virus, không spyware, không backdoor. Đã được kiểm tra đa lớp.</p>
                 </div>
-
-                <!-- Review 3 -->
-                <div class="testimonial">
-                    <span class="quote-mark">"</span>
-                    <div class="testimonial-head">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #3d8bff, #66a3ff);">TH</div>
-                        <div class="testimonial-info">
-                            <div class="name">
-                                Lê Thanh Hà
-                                <span class="verified-badge">
-                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                </span>
-                            </div>
-                            <div class="role">Streamer LOL · 12k Followers</div>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="testimonial-text">Stream LOL mà lâu lâu drop frame, OBS với game giành RAM. Dùng tool này cái máy mượt hẳn, view ổn định <strong>60fps không tụt</strong> luôn. Viewer cũng khen stream nét hơn.</p>
+                <div class="faq-box">
+                    <h4>⚡ Nhận key 1-5 phút</h4>
+                    <p>Sau khi thanh toán, gửi bill qua Zalo — nhận key ngay trong 1-5 phút.</p>
                 </div>
-
-                <!-- Review 4 -->
-                <div class="testimonial">
-                    <span class="quote-mark">"</span>
-                    <div class="testimonial-head">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #16c784, #22e89a);">QB</div>
-                        <div class="testimonial-info">
-                            <div class="name">
-                                Phạm Quốc Bảo
-                                <span class="verified-badge">
-                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                </span>
-                            </div>
-                            <div class="role">PUBG Mobile · Conqueror</div>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="testimonial-text">Chơi PUBG Mobile trên giả lập, trước hay bị lag spike khi combat. Sau khi áp dụng profile được ổn định, <strong>không còn tụt FPS</strong> khi đấu súng. 49k mà được vậy thì quá rẻ.</p>
-                </div>
-
-                <!-- Review 5 -->
-                <div class="testimonial">
-                    <span class="quote-mark">"</span>
-                    <div class="testimonial-head">
-                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f5c542, #f5a742);">ĐA</div>
-                        <div class="testimonial-info">
-                            <div class="name">
-                                Vũ Đức Anh
-                                <span class="verified-badge">
-                                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                </span>
-                            </div>
-                            <div class="role">Gamer PC cấu hình thấp</div>
-                        </div>
-                    </div>
-                    <div class="testimonial-stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="testimonial-text">Máy mình cùi i3 8100 + 8GB RAM, trước chơi LOL chỉ được 60fps medium. Sau khi dùng tool + set profile được <strong>90-100fps low</strong>, mượt hơn hẳn. Cài 10 phút là xong, dễ dùng.</p>
-                </div>
-
-            </div>
-
-            <!-- Stats bar -->
-            <div class="testimonial-stats">
-                <div class="testimonial-stat">
-                    <div class="num">500+</div>
-                    <div class="lbl">Khách hàng</div>
-                </div>
-                <div class="testimonial-stat">
-                    <div class="num">4.9/5</div>
-                    <div class="lbl">Đánh giá trung bình</div>
-                </div>
-                <div class="testimonial-stat">
-                    <div class="num">+40%</div>
-                    <div class="lbl">FPS trung bình</div>
-                </div>
-                <div class="testimonial-stat">
-                    <div class="num">24/7</div>
-                    <div class="lbl">Hỗ trợ</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="safety-grid">
-            <div class="safety-card green">
-                <div class="s-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                </div>
-                <div>
-                    <h3>Cam kết an toàn 100%</h3>
-                    <p>Sản phẩm được phát triển bởi đội ngũ chuyên nghiệp, <strong>không chứa mã độc, spyware, trojan, ransomware</strong> hay bất kỳ hình thức thu thập dữ liệu nào.</p>
-                    <ul>
-                        <li>Không thu thập thông tin cá nhân người dùng</li>
-                        <li>Không kết nối tới máy chủ lạ ngoài server license</li>
-                        <li>Không có quảng cáo, không cài đặt phần mềm phụ</li>
-                        <li>SHA256 hash công khai để người dùng tự verify</li>
-                        <li>Hoàn tiền 100% nếu phát hiện mã độc</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="safety-card yellow">
-                <div class="s-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-                </div>
-                <div>
-                    <h3>Lưu ý về cảnh báo Antivirus</h3>
-                    <p>Tool này <strong>tinh chỉnh registry sâu và tối ưu hệ thống</strong> để đạt hiệu năng tối đa. Đây là đặc điểm chung của mọi phần mềm tối ưu (CCleaner, Razer Cortex, Advanced SystemCare...), nên <strong>một số AV có thể cảnh báo nhầm</strong>.</p>
-                    <p>Nếu AV của bạn cảnh báo:</p>
-                    <ul>
-                        <li>Thêm file vào <strong>danh sách loại trừ (exclusion)</strong> của AV</li>
-                        <li>Hoặc <strong>tạm tắt AV</strong> trong lúc cài đặt</li>
-                        <li>Kiểm tra SHA256 khớp với hash công khai bên trên</li>
-                        <li>Liên hệ hỗ trợ nếu cần hướng dẫn chi tiết</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="features" class="section">
-            <div class="section-head">
-                <span class="eyebrow">Tính năng</span>
-                <h2>Một công cụ — Vô vàn tinh chỉnh</h2>
-                <p>Hơn 50 tinh chỉnh hệ thống được áp dụng tự động, an toàn, có thể hoàn tác bất cứ lúc nào.</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
-                    </div>
-                    <h4>Tăng FPS tối đa</h4>
-                    <p>Ultimate Power Plan, CPU 100%, tắt core parking, ưu tiên tiến trình game.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>
-                    </div>
-                    <h4>Giảm ping mạng</h4>
-                    <p>Tắt Nagle, Network Throttling, tối ưu TCP stack, DNS Cloudflare + Google.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
-                    </div>
-                    <h4>Dọn RAM &amp; Cache</h4>
-                    <p>Deep clean RAM, purge standby list, flush system cache — thực sự giải phóng bộ nhớ.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                    </div>
-                    <h4>Giảm độ trễ</h4>
-                    <p>Tinh chỉnh timer resolution, MMCSS priority, latency tweaks chuyên sâu.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                    </div>
-                    <h4>MSI Mode cho GPU</h4>
-                    <p>Bật Message Signaled Interrupts giúp GPU phản hồi nhanh hơn, giảm stutter.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h4>Backup &amp; Restore</h4>
-                    <p>Tự động tạo restore point + backup registry. Hoàn tác mọi thay đổi chỉ 1 click.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <h4>Per-Game Profile</h4>
-                    <p>Tạo profile riêng cho từng game: ưu tiên CPU, GPU preference, tắt fullscreen opt.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="f-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-                    </div>
-                    <h4>Log chi tiết</h4>
-                    <p>Mọi thao tác đều được ghi log, có thể export ra file để kiểm tra.</p>
+                <div class="faq-box">
+                    <h4>💬 Hỗ trợ 24/7</h4>
+                    <p>Chat Zalo trực tiếp với admin, phản hồi trung bình &lt; 5 phút kể cả ngày lễ.</p>
                 </div>
             </div>
         </div>
@@ -1710,70 +910,564 @@ footer strong { color: var(--text-dim); }
     </div>
 </section>
 
-<section id="tab-contact" class="tab-panel">
+<!-- ============================================================
+     TAB: PRODUCTS (CÓ LINK TẢI)
+     ============================================================ -->
+<section id="tab-products" class="tab-panel">
     <div class="wrapper">
 
-        <div class="contact-hero">
-            <div class="vip-badge">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                VIP LICENSE
-            </div>
-            <h1>Mua Key VIP<br>Chính Hãng</h1>
-            <p>Key VIP vĩnh viễn — kích hoạt 1 lần, dùng mãi mãi. Hỗ trợ đổi máy 1 lần miễn phí. Bảo hành trọn đời.</p>
+        <div class="hero">
+            <div class="hero-tag"><span class="dot"></span>Sản phẩm chính hãng</div>
+            <h1>Chọn <span class="accent">gói phù hợp</span></h1>
+            <p>Cả ba sản phẩm đều dùng vĩnh viễn, bảo hành trọn đời. Tải App dùng thử ngay bên dưới!</p>
         </div>
 
-        <div class="pricing-box">
-            <div class="pricing-label">Gói VIP Vĩnh Viễn</div>
-            <div class="price">99.000đ</div>
-            <div class="price-note">Thanh toán 1 lần · Dùng vĩnh viễn · Không phí ẩn</div>
+        <div class="versions-grid">
 
-            <ul>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Key VIP vĩnh viễn (không hết hạn)</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Kích hoạt 1 key / 1 máy</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Đổi máy 1 lần miễn phí</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hỗ trợ cập nhật trọn đời</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hỗ trợ kỹ thuật 24/7 qua Zalo</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hoàn tiền 100% nếu không dùng được</li>
-            </ul>
-
-            <!-- CHÈN KHỐI QR VÀO ĐÂY -->
-            <div class="qr-container">
-                <img src="qr-mb.jpg" alt="QR MB Bank NGUYEN CONG BAO CHUNG" class="qr-image" onclick="window.open(this.src, '_blank')" title="Click để phóng to">
-                <p class="qr-text">Quét mã QR để thanh toán tự động</p>
-            </div>
-
-            <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">
-                Liên hệ qua <strong style="color:var(--text)">Zalo</strong> hoặc <strong style="color:var(--text)">Facebook</strong> bên dưới để được tư vấn và nhận key ngay sau khi thanh toán.
-            </div>
-        </div>
-
-        <div class="contact-grid">
-            <a href="https://zalo.me/0984518060" target="_blank" rel="noopener" class="contact-card zalo">
-                <div class="c-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.87 1.51 5.42 3.87 7.09-.15 1.2-.67 2.96-1.87 4.41 1.9-.28 4.32-1.35 5.68-2.55.73.13 1.51.2 2.32.2 5.52 0 10-4.03 10-9S17.52 2 12 2zm-4.5 12.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            <!-- Ghost Spectre -->
+            <div class="version-card ghost">
+                <span class="rec-badge">Siêu nhẹ</span>
+                <div class="version-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 3h18v14H3zM8 21h8M12 17v4"/></svg>
                 </div>
-                <h3>Zalo</h3>
-                <div class="c-desc">Chat trực tiếp qua Zalo để được tư vấn nhanh nhất — phản hồi trong 5 phút.</div>
-                <div class="c-cta">
-                    Mở Zalo
+                <h3>Ghost Spectre 10 Pro Superlite</h3>
+                <p class="sub">Windows siêu nhẹ cho máy yếu — chỉ 1.3GB RAM khi idle</p>
+
+                <ul class="feature-list">
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Chỉ 1.3GB RAM, 11 process khi khởi động</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>FPS tăng vọt, không giật lag</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>God Mode + Ghost Toolbox tích hợp</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tương thích tốt với phần cứng phổ biến</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hỗ trợ kích hoạt bản quyền số</li>
+                </ul>
+
+                <div class="price-row">
+                    <span class="price-now">50.000đ</span>
+                    <span class="price-old">299.000đ</span>
+                </div>
+
+                <a href="#" class="btn-buy full" onclick="switchTab('payment');return false;">
+                    Mua ngay
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-            </a>
+                </a>
+            </div>
 
-            <a href="https://www.facebook.com/profile.php?id=61559285229544" target="_blank" rel="noopener" class="contact-card fb">
-                <div class="c-icon">
-                    <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            <!-- MAX -->
+            <div class="version-card">
+                <span class="rec-badge">Hiệu năng tối đa</span>
+                <div class="version-icon">
+                    <svg viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
                 </div>
-                <h3>Facebook</h3>
-                <div class="c-desc">Nhắn tin qua Facebook Page để được hỗ trợ và mua key VIP chính hãng.</div>
-                <div class="c-cta">
-                    Mở Facebook
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <h3>Gaming Optimizer MAX</h3>
+                <p class="sub">Bản tối ưu cực hạn — dành cho game thủ hardcore</p>
+
+                <ul class="feature-list">
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tắt toàn bộ dịch vụ bloatware</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tắt Windows Defender &amp; HVCI</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Ultimate Power Plan + CPU 100%</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>MSI Mode + Network Boost</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Backup &amp; Restore 1-click</li>
+                    <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Không chơi được game có Vanguard</li>
+                </ul>
+
+                <div class="price-row">
+                    <span class="price-now">99.000đ</span>
+                    <span class="price-old">299.000đ</span>
                 </div>
+
+                <div class="action-row">
+                    <a href="#" class="btn-buy" onclick="switchTab('payment');return false;">
+                        Mua Key
+                    </a>
+                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5.2/GamingOptimizer.exe" target="_blank" class="btn-download">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Tải App (1.65 MB)
+                    </a>
+                </div>
+            </div>
+
+            <!-- AC -->
+            <div class="version-card ac">
+                <span class="rec-badge">Anticheat Safe</span>
+                <div class="version-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Gaming Optimizer AC</h3>
+                <p class="sub">Bản an toàn — chơi được mọi game kể cả Vanguard</p>
+
+                <ul class="feature-list">
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>An toàn với Vanguard / EAC / BattlEye</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Giữ nguyên Windows Defender</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Ultimate Power Plan + CPU 100%</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>MSI Mode + Network Boost</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Per-game profile (ưu tiên CPU/GPU)</li>
+                    <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hiệu năng cao, ổn định 24/7</li>
+                </ul>
+
+                <div class="price-row">
+                    <span class="price-now">99.000đ</span>
+                    <span class="price-old">299.000đ</span>
+                </div>
+
+                <div class="action-row">
+                    <a href="#" class="btn-buy" onclick="switchTab('payment');return false;">
+                        Mua Key
+                    </a>
+                    <a href="https://github.com/tkcuanam2212-art/gaming-optimizer-license/releases/download/v5.2/GamingOptimizer_AC.exe" target="_blank" class="btn-download">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Tải App (1.63 MB)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>💡 <strong>1 key VIP</strong> dùng được cho <strong>cả 2 phiên bản MAX &amp; AC</strong> — bạn có thể chuyển đổi qua lại tùy nhu cầu sau khi mua key.</span>
+        </div>
+
+        <!-- COMBO -->
+        <div class="combo-box">
+            <span class="eyebrow" style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--red);text-transform:uppercase;margin-bottom:12px;">Combo tiết kiệm</span>
+            <h2 style="font-size:clamp(24px,3.4vw,36px);font-weight:800;letter-spacing:-1px;">Mua App + Windows — Giảm thêm 10K</h2>
+            <div class="combo-price">139.000đ<span class="combo-old">149.000đ</span></div>
+            <div class="combo-note">Gaming Optimizer VIP + Ghost Spectre 10 Pro Superlite — trọn bộ tối ưu</div>
+            <a href="#" class="btn-buy" onclick="switchTab('payment');return false;">
+                Mua combo ngay
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
 
-        <div class="section">
+    </div>
+</section>
+
+<!-- ============================================================
+     TAB: PAYMENT
+     ============================================================ -->
+<section id="tab-payment" class="tab-panel">
+    <div class="wrapper">
+
+        <div class="hero">
+            <div class="hero-tag"><span class="dot"></span>Thanh toán an toàn · Nhận key 1-5 phút</div>
+            <h1>Quét QR <span class="accent">thanh toán</span></h1>
+            <p>Chuyển khoản qua MB Bank, sau đó chụp bill gửi Zalo để nhận Key VIP ngay lập tức.</p>
+        </div>
+
+        <div class="payment-wrap">
+            <!-- QR -->
+            <div class="qr-card">
+                <h3>📱 Quét mã QR</h3>
+                <p class="qr-sub">Mở app ngân hàng bất kỳ (MB, Momo, ZaloPay...) và quét mã bên dưới</p>
+                <img
+                    src="qr-mb.png"
+                    alt="QR MB Bank - NGUYEN CONG BAO CHUNG"
+                    class="qr-image"
+                    onclick="window.open(this.src, '_blank')"
+                    title="Click để phóng to"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+                >
+                <p style="display:none; color: var(--red); font-size: 13px; padding: 12px; background: rgba(255,51,85,.1); border-radius: 8px; border: 1px solid rgba(255,51,85,.3);">
+                    ⚠️ Chưa tìm thấy file <code>qr-mb.png</code>. Vui lòng upload ảnh QR vào cùng thư mục.
+                </p>
+                <p style="font-size: 12px; color: var(--text-mute);">
+                    Nội dung chuyển khoản: <strong style="color: var(--red);">VIP-GAMING</strong>
+                </p>
+            </div>
+
+            <!-- Bank info -->
+            <div class="info-card">
+                <h3>💳 Thông tin chuyển khoản</h3>
+
+                <div class="bank-row">
+                    <span class="label">Ngân hàng</span>
+                    <span class="value">MB Bank</span>
+                </div>
+                <div class="bank-row">
+                    <span class="label">Số tài khoản</span>
+                    <span style="text-align:right;">
+                        <span class="value green">78922122010</span>
+                        <button class="copy-btn" onclick="copyText('78922122010', this)">Copy</button>
+                    </span>
+                </div>
+                <div class="bank-row">
+                    <span class="label">Chủ tài khoản</span>
+                    <span style="text-align:right;">
+                        <span class="value">NGUYEN CONG BAO CHUNG</span>
+                        <button class="copy-btn" onclick="copyText('NGUYEN CONG BAO CHUNG', this)">Copy</button>
+                    </span>
+                </div>
+                <div class="bank-row">
+                    <span class="label">App VIP (MAX/AC)</span>
+                    <span style="text-align:right;">
+                        <span class="value yellow">99.000đ</span>
+                        <button class="copy-btn" onclick="copyText('99000', this)">Copy</button>
+                    </span>
+                </div>
+                <div class="bank-row">
+                    <span class="label">Windows Ghost Spectre</span>
+                    <span style="text-align:right;">
+                        <span class="value yellow">50.000đ</span>
+                        <button class="copy-btn" onclick="copyText('50000', this)">Copy</button>
+                    </span>
+                </div>
+                <div class="bank-row">
+                    <span class="label">Combo (App + Win)</span>
+                    <span style="text-align:right;">
+                        <span class="value yellow">139.000đ</span>
+                        <button class="copy-btn" onclick="copyText('139000', this)">Copy</button>
+                    </span>
+                </div>
+                <div class="bank-row">
+                    <span class="label">Nội dung CK</span>
+                    <span style="text-align:right;">
+                        <span class="value cyan">VIP-GAMING</span>
+                        <button class="copy-btn" onclick="copyText('VIP-GAMING', this)">Copy</button>
+                    </span>
+                </div>
+
+                <div class="note-box">
+                    <strong>⚠️ Quan trọng:</strong> Sau khi chuyển khoản, hãy <strong>chụp bill giao dịch</strong> và gửi qua <strong>Zalo 0984518060</strong> kèm nội dung "VIP-GAMING". Admin sẽ gửi Key VIP trong <strong>1-5 phút</strong>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Steps -->
+        <div class="section" style="padding-bottom:0;">
+            <div class="section-head">
+                <span class="eyebrow">Quy trình</span>
+                <h2>Mua key trong 4 bước</h2>
+                <p>Chưa đầy 5 phút từ khi thanh toán đến khi nhận key.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-box">
+                    <div class="step-num">1</div>
+                    <h3>Tải App & Chọn gói</h3>
+                    <p>Vào tab "Sản phẩm" bấm "Tải App" để cài đặt, sau đó chọn gói phù hợp.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">2</div>
+                    <h3>Chuyển khoản</h3>
+                    <p>Quét QR hoặc chuyển tay vào MB Bank với nội dung "VIP-GAMING".</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">3</div>
+                    <h3>Gửi bill qua Zalo</h3>
+                    <p>Chụp ảnh giao dịch, gửi kèm Device ID (nếu có) qua Zalo 0984518060.</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">4</div>
+                    <h3>Nhận Key VIP</h3>
+                    <p>Admin tạo key và gửi lại trong 1-5 phút. Kích hoạt và chiến game!</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================
+     TAB: REVIEWS
+     ============================================================ -->
+<section id="tab-reviews" class="tab-panel">
+    <div class="wrapper">
+
+        <div class="hero">
+            <div class="hero-tag"><span class="dot"></span>Hơn 500+ game thủ tin dùng</div>
+            <h1>Khách hàng <span class="accent">nói gì</span></h1>
+            <p>Đánh giá thật từ người dùng Gaming Optimizer VIP &amp; Windows Ghost Spectre Superlite.</p>
+        </div>
+
+        <div class="testimonials">
+
+            <!-- 1 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #ff3355, #ff5577);">MT</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Nguyễn Minh Tuấn
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">CS2 Player · Rank Global Elite</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">PC mình i5 9400F + GTX 1660, trước chơi CS2 được 120-140 FPS, sau khi dùng tool lên ổn định <strong>180-200 FPS</strong>. Aim mượt hơn hẳn, không còn giật khi vào smoke. Quá đáng tiền.</p>
+            </div>
+
+            <!-- 2 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #a855f7, #c084fc);">HL</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Trần Hoàng Long
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Valorant · Rank Immortal 3</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Mình chơi Valorant nên dùng bản <strong>AC</strong>. Ping trước hay nhảy 40-60ms làm whiff liên tục, sau khi tối ưu mạng giờ ổn định <strong>25-30ms</strong>. Không bị Vanguard hành gì cả.</p>
+            </div>
+
+            <!-- 3 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #3d8bff, #66a3ff);">TH</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Lê Thanh Hà
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Streamer LOL · 12k Followers</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Stream LOL mà lâu lâu drop frame, OBS với game giành RAM. Dùng tool này cái máy mượt hẳn, view ổn định <strong>60fps không tụt</strong> luôn. Viewer cũng khen stream nét hơn.</p>
+            </div>
+
+            <!-- 4 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #16c784, #22e89a);">QB</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Phạm Quốc Bảo
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">PUBG Mobile · Conqueror</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Chơi PUBG Mobile trên giả lập, trước hay bị lag spike khi combat. Sau khi áp dụng profile được ổn định, <strong>không còn tụt FPS</strong> khi đấu súng. 99k mà được vậy thì quá rẻ.</p>
+            </div>
+
+            <!-- 5 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f5c542, #f5a742);">ĐA</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Vũ Đức Anh
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Gamer PC cấu hình thấp</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Máy mình cùi i3 8100 + 8GB RAM, trước chơi LOL chỉ được 60fps medium. Sau khi dùng tool + set profile được <strong>90-100fps low</strong>, mượt hơn hẳn. Cài 10 phút là xong, dễ dùng.</p>
+            </div>
+
+            <!-- 6 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #16c784, #0f9b68);">KD</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Đỗ Khắc Duy
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Ghost Spectre User · i5 4590 + GTX 750Ti</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Cài Ghost Spectre cho con máy cổ i5 4590. Mở task manager thấy <strong>RAM chỉ 1.3GB, 11 process</strong> — không tin nổi. Game online giờ load nhanh, boot máy tầm 15 giây. Quá đáng 50k.</p>
+            </div>
+
+            <!-- 7 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #3d8bff, #2b6fd6);">NN</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Hoàng Nhật Nam
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Laptop cũ · Ghost Spectre</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Laptop cũ chạy Win 10 gốc nóng rồi lag. Cài Ghost Spectre xong FPS từ <strong>40 lên 70</strong>, máy mát hơn rõ rệt. Admin support qua Zalo nhiệt tình, cài xong mới lấy tiền luôn.</p>
+            </div>
+
+            <!-- 8 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #ff5577, #d92b4b);">TM</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Bùi Thị Mai
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Streamer Tiktok · Combo App + Win</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Mình mua combo 139k. Cài Win xong dùng thêm tool tối ưu, OBS không còn drop frame, <strong>stream mượt 60fps</strong> không giật. Giá này quá hời so với công sức mò mẫm tự tinh chỉnh.</p>
+            </div>
+
+            <!-- 9 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #a855f7, #8b3fd9);">VH</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Trịnh Văn Hùng
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Chủ net cỏ · 20 máy Ghost Spectre</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Net mình 20 máy cấu hình yếu, cài Ghost Spectre cho cả dàn. Máy boot nhanh, khách chơi LOL <strong>không còn phàn nàn lag</strong>. Admin hỗ trợ từng máy qua teamviewer, rất có tâm.</p>
+            </div>
+
+            <!-- 10 -->
+            <div class="testimonial">
+                <span class="quote-mark">"</span>
+                <div class="testimonial-head">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f5c542, #d9a72e);">TP</div>
+                    <div class="testimonial-info">
+                        <div class="name">
+                            Ngô Tấn Phát
+                            <span class="verified-badge"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                        </div>
+                        <div class="role">Faceit Level 10 · Dùng bản AC</div>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">Mình chơi Faceit + Valorant nên chỉ dám dùng bản <strong>AC</strong>. Chạy 3 tháng rồi, không bị flag anticheat lần nào, FPS vẫn tăng đều. An tâm nhất là có bản AC riêng cho game có anticheat.</p>
+            </div>
+
+        </div>
+
+        <!-- Stats -->
+        <div class="testimonial-stats">
+            <div class="testimonial-stat">
+                <div class="num">500+</div>
+                <div class="lbl">Khách hàng</div>
+            </div>
+            <div class="testimonial-stat">
+                <div class="num">4.9/5</div>
+                <div class="lbl">Đánh giá trung bình</div>
+            </div>
+            <div class="testimonial-stat">
+                <div class="num">+40%</div>
+                <div class="lbl">FPS trung bình</div>
+            </div>
+            <div class="testimonial-stat">
+                <div class="num">24/7</div>
+                <div class="lbl">Hỗ trợ</div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="section" style="padding-bottom:0;">
+            <div class="section-head">
+                <span class="eyebrow">Liên hệ</span>
+                <h2>Chat với admin</h2>
+                <p>Phản hồi trung bình &lt; 5 phút — hỗ trợ mua key, cài đặt và kỹ thuật 24/7.</p>
+            </div>
+
+            <div class="contact-grid">
+                <a href="https://zalo.me/0984518060" target="_blank" rel="noopener" class="contact-card zalo">
+                    <div class="c-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.87 1.51 5.42 3.87 7.09-.15 1.2-.67 2.96-1.87 4.41 1.9-.28 4.32-1.35 5.68-2.55.73.13 1.51.2 2.32.2 5.52 0 10-4.03 10-9S17.52 2 12 2zm-4.5 12.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    </div>
+                    <h3>Zalo — 0984 518 060</h3>
+                    <div class="c-desc">Chat trực tiếp qua Zalo để được tư vấn nhanh nhất — phản hồi trong 5 phút.</div>
+                    <div class="c-cta">
+                        Mở Zalo
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.facebook.com/profile.php?id=61559285229544" target="_blank" rel="noopener" class="contact-card fb">
+                    <div class="c-icon">
+                        <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+                    </div>
+                    <h3>Facebook Page</h3>
+                    <div class="c-desc">Nhắn tin qua Facebook Page để được hỗ trợ và mua key VIP chính hãng.</div>
+                    <div class="c-cta">
+                        Mở Facebook
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ trước khi mua -->
+        <div class="section" style="padding-top:0;">
             <div class="section-head">
                 <span class="eyebrow">Lưu ý</span>
                 <h2>Trước khi mua</h2>
@@ -1781,7 +1475,7 @@ footer strong { color: var(--text-dim); }
             <div class="faq-grid">
                 <div class="faq-box">
                     <h4>📋 Cần cung cấp gì?</h4>
-                    <p>Sau khi thanh toán, bạn gửi <strong>Device ID</strong> (hiển thị trong dialog Activation của app) để mình tạo key riêng cho máy bạn.</p>
+                    <p>Sau khi thanh toán, bạn gửi <strong>Device ID</strong> (hiển thị trong dialog Activation của app) để admin tạo key riêng cho máy bạn.</p>
                 </div>
                 <div class="faq-box">
                     <h4>⏱️ Bao lâu nhận key?</h4>
@@ -1789,11 +1483,11 @@ footer strong { color: var(--text-dim); }
                 </div>
                 <div class="faq-box">
                     <h4>🔄 Đổi máy được không?</h4>
-                    <p>Được. Bạn có thể đổi máy <strong>1 lần miễn phí</strong>, chỉ cần gửi Device ID mới và mình sẽ reset key.</p>
+                    <p>Được. Bạn có thể đổi máy <strong>1 lần miễn phí</strong>, chỉ cần gửi Device ID mới và admin sẽ reset key.</p>
                 </div>
                 <div class="faq-box">
                     <h4>💳 Thanh toán thế nào?</h4>
-                    <p>Chấp nhận <strong>chuyển khoản MB Bank</strong> (Quét QR hoặc chuyển tay). Chi tiết được gửi qua Zalo khi bạn liên hệ.</p>
+                    <p>Chấp nhận <strong>chuyển khoản MB Bank</strong> (quét QR hoặc chuyển tay). Chi tiết có ở tab Thanh toán.</p>
                 </div>
             </div>
         </div>
@@ -1801,94 +1495,84 @@ footer strong { color: var(--text-dim); }
     </div>
 </section>
 
+<!-- ================= FOOTER ================= -->
 <footer>
     <div class="wrapper">
         <p>© 2026 <strong>Gaming Optimizer</strong> · Made with ❤️ for gamers</p>
     </div>
 </footer>
 
+<!-- ================= TOAST ================= -->
 <div id="toast">
     <div class="t-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
     </div>
-    <span id="toast-text">Đang tải...</span>
+    <span id="toast-text">Đã copy</span>
 </div>
 
 <script>
-function switchTab(tabName) {
+// ============= TAB SWITCHING =============
+function switchTab(name) {
     document.querySelectorAll('.tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.tab === tabName);
+        t.classList.toggle('active', t.dataset.tab === name);
     });
     document.querySelectorAll('.tab-panel').forEach(p => {
         p.classList.remove('active');
     });
-    const target = document.getElementById('tab-' + tabName);
+    const target = document.getElementById('tab-' + name);
     if (target) target.classList.add('active');
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    history.replaceState(null, '', '#' + tabName);
+    history.replaceState(null, '', '#' + name);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash === 'contact' || hash === 'tab-contact') {
-        switchTab('contact');
-    } else {
-        switchTab('about');
+    const hash = (window.location.hash || '').replace('#', '');
+    if (['home', 'products', 'payment', 'reviews'].includes(hash)) {
+        switchTab(hash);
     }
 });
 
-let toastTimer = null;
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    const text  = document.getElementById('toast-text');
-    text.textContent = message;
-    toast.classList.add('show');
-
-    if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-}
-
-function copySha(el, hash) {
-    navigator.clipboard.writeText(hash).then(() => {
-        showToast('Đã copy SHA256 vào clipboard');
-    }).catch(() => {
-        const ta = document.createElement('textarea');
-        ta.value = hash;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast('Đã copy SHA256 vào clipboard');
-    });
-}
-
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        if (href === '#' || href === '#about' || href === '#contact') return;
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// ============= COPY TO CLIPBOARD =============
+function copyText(text, btnEl) {
+    const done = () => {
+        showToast('Đã copy: ' + text);
+        if (btnEl) {
+            const orig = btnEl.textContent;
+            btnEl.textContent = '✓ Đã copy';
+            btnEl.classList.add('copied');
+            setTimeout(() => {
+                btnEl.textContent = orig;
+                btnEl.classList.remove('copied');
+            }, 1600);
         }
-    });
-});
-
-document.addEventListener('keydown', e => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        const tabs = ['about', 'contact'];
-        const current = document.querySelector('.tab.active')?.dataset.tab || 'about';
-        const idx = tabs.indexOf(current);
-        const next = e.key === 'ArrowRight'
-            ? tabs[(idx + 1) % tabs.length]
-            : tabs[(idx - 1 + tabs.length) % tabs.length];
-        switchTab(next);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    } else {
+        fallbackCopy(text, done);
     }
-});
+}
+function fallbackCopy(text, cb) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    cb && cb();
+}
+
+// ============= TOAST =============
+let toastTimer = null;
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-text').textContent = msg;
+    t.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
 </script>
 </body>
 </html>
